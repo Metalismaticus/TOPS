@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vintage Story Сервер</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f1e8;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      width: 100%;
+      background-image: url('img/header-bg.png');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      padding-left: 1em;
+    }
+    header h1 {
+      color: #fff3c1;
+      font-size: 2em;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 0.2em 0.5em;
+      border-radius: 10px;
+      margin: 0;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      background-color: #e3d6ae;
+      padding: 1em;
+      gap: 1em;
+      width: 100%;
+    }
+    nav button {
+      background: linear-gradient(to bottom, #8b5e3c, #5a3925);
+      border: 3px solid #3b2416;
+      padding: 0.5em 1.5em;
+      font-size: 1em;
+      color: #fcefc1;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 10px;
+      box-shadow: 0 3px #2d1b10;
+      text-shadow: 1px 1px #3b2416;
+    }
+    nav button:hover {
+      background: linear-gradient(to bottom, #a37249, #6b452b);
+    }
+    #content {
+      max-width: 800px;
+      padding: 2em;
+      text-align: center;
+      font-size: 1.2em;
+    }
+    img.section-image {
+      width: 100%;
+      max-width: 400px;
+      margin: 1em auto;
+      display: block;
+    }
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+      }
+      header {
+        height: 150px;
+        padding-left: 0.5em;
+        justify-content: center;
+      }
+      header h1 {
+        font-size: 1.2em;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Vintage Story — Сервер</h1>
+  </header>
+  <nav>
+    <button onclick="showSection('links')">Ссылки и настройки</button>
+    <button onclick="showSection('commands')">Полезные команды</button>
+    <button onclick="showSection('mods')">Полезные моды</button>
+    <button onclick="showSection('cities')">Города и навигация</button>
+    <button onclick="showSection('places')">Интересные места</button>
+  </nav>
+  <div id="content">
+    <p>Выберите раздел, чтобы увидеть информацию.</p>
+  </div>
+
+  <script>
+    const sections = {
+      links: {
+        text: 'Здесь будут ссылки и настройки для комфортной игры.',
+        img: 'img/links.png'
+      },
+      commands: {
+        text: 'Список полезных команд сервера.',
+        img: 'img/commands.png'
+      },
+      mods: {
+        text: 'Рекомендуемые моды для игры на сервере.',
+        img: 'img/mods.png'
+      },
+      cities: {
+        text: 'Навигация по городам и точкам интереса.',
+        img: 'img/cities.png'
+      },
+      places: {
+        text: 'Интересные и красивые места сервера.',
+        img: 'img/places.png'
+      }
+    };
+
+    function showSection(key) {
+      const section = sections[key];
+      const content = `
+        <img class="section-image" src="${section.img}" alt="${key}">
+        <p>${section.text}</p>
+      `;
+      document.getElementById('content').innerHTML = content;
+    }
+  </script>
+</body>
+</html>
