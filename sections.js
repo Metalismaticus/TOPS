@@ -11,13 +11,11 @@ const sections = {
     <a href="https://t.me/mylesvintagestory" target="_blank">https://t.me/mylesvintagestory</a><br><br>
     Также полезные ссылки:<br>
     Карта: <a href="https://map.tops.vintagestory.at/?x=-1&y=17&zoom=10" target="_blank">ссылка</a><br>
-    Навигатор: <a href="https://herrscher-of-sleeping.github.io/tl-navigator/" target="_blank">ссылка</a>`,
-    img: 'img/links.png'
+    Навигатор: <a href="https://herrscher-of-sleeping.github.io/tl-navigator/" target="_blank">ссылка</a>`
   },
   commands: {
     text: `Смена класса с перезарядкой в реальные полгода:<br>
-    <code>.charsel</code>`,
-    img: 'img/commands.png'
+    <code>.charsel</code>`
   },
   mods: {
     text: `Перевод сообщений в чате:<br>
@@ -27,8 +25,7 @@ const sections = {
     Добавляет возможность смотреть все приваты игроков (по умолчанию на R англ.):<br>
     <a href="https://mods.vintagestory.at/claimsradar" target="_blank">Claims Radar</a><br><br>
     Больше информации, от времени горения угольной ямы до информации у какого торговца что и за сколько продается:<br>
-    <a href="https://mods.vintagestory.at/extrainfo" target="_blank">Extra Info</a>`,
-    img: 'img/mods.png'
+    <a href="https://mods.vintagestory.at/extrainfo" target="_blank">Extra Info</a>`
   },
   cities: {
     text: `Ты должен решить для себя, что тебе интереснее — проходить игру в одиночку или же найти себе город и развиваться в социуме, используя торговлю на максимум. Если тебе интересно играть с живыми людьми, то вот список живых поселков с РУ игроками. На самом деле их больше, но тут указаны только те, которые оставили свои контакты и указали маршруты.<br><br>
@@ -37,12 +34,31 @@ const sections = {
       <li>Желтые высоты</li>
       <li>Аграба</li>
       <li>Эребор</li>
-    </ul>`,
-    img: 'img/cities.png'
+    </ul>`
   },
   places: {
     text: `<code>/waypoint addati gear 524 110 437 false #FF0000 Evangeлисткий храм</code><br>
-           <code>/waypoint addati gear -776 110 17047 false #FF0000 Музей диковин</code>`,
-    img: 'img/places.png'
+           <code>/waypoint addati gear -776 110 17047 false #FF0000 Музей диковин</code>`
   }
 };
+
+// плавная анимация смены контента
+function showSection(key) {
+  const section = sections[key];
+  const contentEl = document.getElementById('content');
+  contentEl.style.opacity = 0;
+  setTimeout(() => {
+    const content = `
+      <p>${section.text}</p>
+    `;
+    contentEl.innerHTML = content;
+    contentEl.style.opacity = 1;
+  }, 200);
+}
+
+// Установка фона всему сайту
+const body = document.body;
+body.style.backgroundImage = 'url("img/pixel-horizon-bg.png")';
+body.style.backgroundSize = 'cover';
+body.style.backgroundRepeat = 'no-repeat';
+body.style.backgroundAttachment = 'fixed';
