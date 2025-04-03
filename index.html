@@ -92,6 +92,53 @@ body {
   100% { transform: translateX(200vw); }
 }
 
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+  nav button {
+    font-size: 1.2em;
+    padding: 1em;
+    width: 90%;
+  }
+  .frame {
+    margin: 1em auto;
+    max-width: 95%;
+  }
+  .frame-content {
+    font-size: 1.1em;
+    padding: 1.5em;
+  }
+  .sky h1 {
+    font-size: 1.5em;
+    padding: 0.5em 1em;
+  }
+}
+  .frame {
+    margin: 1em;
+    max-width: 100%;
+  }
+  .frame-middle {
+    flex-direction: column;
+  }
+  .frame-side.left,
+  .frame-side.right,
+  .frame-top,
+  .frame-bottom {
+    display: none;
+  }
+  .frame-content {
+    max-width: 100%;
+    padding: 1em;
+    font-size: 1em;
+  }
+  .sky h1 {
+    font-size: 1.2em;
+    padding: 0.5em;
+  }
+}
+
 nav {
   display: flex;
   flex-wrap: wrap;
@@ -170,34 +217,12 @@ nav button {
   max-width: 800px;
   width: 100%;
 }
-.frame-top::before, .frame-top::after, .frame-bottom::before, .frame-bottom::after {
-  right: 0;
-  bottom: 0;
-  top: auto;
-  transform: scaleX(-1);
-  transform-origin: bottom right;
-}
 
-.frame-top::before {
-  left: 0;
-}
-.frame-top::after {
-  right: 0;
-  transform: scaleX(-1);
-}
-.frame-bottom::before {
-  left: 0;
-  bottom: 0;
-  top: auto;
-  transform: scaleY(1) scaleX(1);
-  transform-origin: bottom left;
-}
-.frame-bottom::after {
-  right: 0;
-  bottom: 0;
-  top: auto;
-  transform: scale(-1, -1);
-}
+
+
+
+
+
 </style>
 
 <script>
