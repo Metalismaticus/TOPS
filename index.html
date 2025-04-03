@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -7,6 +6,18 @@
   <title>Vintage Story Сервер TOPS</title>
 </head>
 <body>
+  <div class="sky">
+    <h1>Vintage Story сервер TOPS</h1>
+  </div>
+
+  <nav>
+    <button onclick="showSection('links')">Ссылки и настройки</button>
+    <button onclick="showSection('commands')">Полезные команды</button>
+    <button onclick="showSection('mods')">Полезные моды</button>
+    <button onclick="showSection('cities')">Города и навигация</button>
+    <button onclick="showSection('places')">Интересные места</button>
+  </nav>
+
   <div class="frame">
     <div class="frame-top"></div>
     <div class="frame-middle">
@@ -22,6 +33,54 @@
   </div>
 
   <style>
+    body {
+      background-image: url("img/pixel-horizon-bg.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      margin: 0;
+      padding: 0;
+    }
+
+    .sky {
+      height: 150px;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sky h1 {
+      font-size: 2em;
+      padding: 0.5em 1em;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff3c1;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      background-color: #e3d6ae;
+      padding: 1em;
+      gap: 1em;
+    }
+
+    nav button {
+      background: linear-gradient(to bottom, #8b5e3c, #5a3925);
+      border: 3px solid #3b2416;
+      padding: 0.5em 1.5em;
+      font-size: 1em;
+      color: #fcefc1;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 10px;
+      box-shadow: 0 3px #2d1b10;
+      text-shadow: 1px 1px #3b2416;
+    }
+
     .frame {
       display: flex;
       flex-direction: column;
@@ -32,14 +91,16 @@
       transition: opacity 0.3s ease;
     }
 
-    .frame-top,
-    .frame-bottom {
+    .frame-top {
       height: 32px;
       background-image: url('img/topbot.png');
       background-repeat: repeat-x;
     }
 
     .frame-bottom {
+      height: 32px;
+      background-image: url('img/topbot.png');
+      background-repeat: repeat-x;
       transform: scaleY(-1);
     }
 
@@ -49,14 +110,16 @@
       background-color: #fef8e0;
     }
 
-    .frame-side {
+    .frame-side.left {
       width: 32px;
       background-image: url('img/left.png');
       background-repeat: repeat-y;
     }
 
     .frame-side.right {
-      transform: scaleX(-1);
+      width: 32px;
+      background-image: url('img/right.png');
+      background-repeat: repeat-y;
     }
 
     .frame-content {
@@ -84,31 +147,19 @@
         Навигатор: <a href="https://herrscher-of-sleeping.github.io/tl-navigator/" target="_blank">ссылка</a>`
       },
       commands: {
-        text: `Смена класса с перезарядкой в реальные полгода:<br>
-        <code>.charsel</code>`
+        text: `Смена класса с перезарядкой в реальные полгода:<br><code>.charsel</code>`
       },
       mods: {
-        text: `Перевод сообщений в чате:<br>
-        <a href="https://mods.vintagestory.at/chattranslator" target="_blank">Chat Translator</a><br><br>
-        Показывает список игроков и их пинг на Tab:<br>
-        <a href="https://mods.vintagestory.at/playerlist" target="_blank">Player List</a><br><br>
-        Добавляет возможность смотреть все приваты игроков (по умолчанию на R англ.):<br>
-        <a href="https://mods.vintagestory.at/claimsradar" target="_blank">Claims Radar</a><br><br>
-        Больше информации, от времени горения угольной ямы до информации у какого торговца что и за сколько продается:<br>
-        <a href="https://mods.vintagestory.at/extrainfo" target="_blank">Extra Info</a>`
+        text: `Перевод сообщений в чате:<br><a href="https://mods.vintagestory.at/chattranslator" target="_blank">Chat Translator</a><br><br>
+        Показывает список игроков и их пинг на Tab:<br><a href="https://mods.vintagestory.at/playerlist" target="_blank">Player List</a><br><br>
+        Добавляет возможность смотреть все приваты игроков (по умолчанию на R англ.):<br><a href="https://mods.vintagestory.at/claimsradar" target="_blank">Claims Radar</a><br><br>
+        Больше информации, от времени горения угольной ямы до информации у какого торговца что и за сколько продается:<br><a href="https://mods.vintagestory.at/extrainfo" target="_blank">Extra Info</a>`
       },
       cities: {
-        text: `Ты должен решить для себя, что тебе интереснее — проходить игру в одиночку или же найти себе город и развиваться в социуме, используя торговлю на максимум. Если тебе интересно играть с живыми людьми, то вот список живых поселков с РУ игроками. На самом деле их больше, но тут указаны только те, которые оставили свои контакты и указали маршруты.<br><br>
-        <ul>
-          <li>Бронзовый город</li>
-          <li>Желтые высоты</li>
-          <li>Аграба</li>
-          <li>Эребор</li>
-        </ul>`
+        text: `Ты должен решить для себя, что тебе интереснее — проходить игру в одиночку или же найти себе город и развиваться в социуме, используя торговлю на максимум. Если тебе интересно играть с живыми людьми, то вот список живых поселков с РУ игроками.<br><br><ul><li>Бронзовый город</li><li>Желтые высоты</li><li>Аграба</li><li>Эребор</li></ul>`
       },
       places: {
-        text: `<code>/waypoint addati gear 524 110 437 false #FF0000 Evangeлисткий храм</code><br>
-              <code>/waypoint addati gear -776 110 17047 false #FF0000 Музей диковин</code>`
+        text: `<code>/waypoint addati gear 524 110 437 false #FF0000 Evangeлисткий храм</code><br><code>/waypoint addati gear -776 110 17047 false #FF0000 Музей диковин</code>`
       }
     };
 
@@ -118,17 +169,11 @@
       const contentEl = document.getElementById('content');
       contentContainer.style.opacity = 0;
       setTimeout(() => {
-        const content = `<p>${section.text}</p>`;
-        contentEl.innerHTML = content;
+        contentEl.innerHTML = `<p>${section.text}</p>`;
         contentContainer.style.opacity = 1;
       }, 200);
     }
-
-    const body = document.body;
-    body.style.backgroundImage = 'url("img/pixel-horizon-bg.png")';
-    body.style.backgroundSize = 'cover';
-    body.style.backgroundRepeat = 'no-repeat';
-    body.style.backgroundAttachment = 'fixed';
   </script>
 </body>
 </html>
+
