@@ -114,6 +114,7 @@ nav button {
 }
 
 .frame {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -125,15 +126,17 @@ nav button {
 
 .frame-top {
   height: 32px;
-  background-image: url('img/topbot.png');
+  background-image: url('img/top.png');
   background-repeat: repeat-x;
+  position: relative;
 }
 
 .frame-bottom {
   height: 32px;
-  background-image: url('img/topbot.png');
+  background-image: url('img/top.png');
   background-repeat: repeat-x;
   transform: scaleY(-1);
+  position: relative;
 }
 
 .frame-middle {
@@ -162,6 +165,34 @@ nav button {
   font-size: 1.2em;
   text-align: center;
   box-sizing: border-box;
+}
+.frame-top::before, .frame-top::after, .frame-bottom::before, .frame-bottom::after {
+  content: "";
+  width: 32px;
+  height: 32px;
+  background-image: url('img/corner-topleft.png');
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+}
+
+.frame-top::before {
+  left: 0;
+}
+.frame-top::after {
+  right: 0;
+  transform: scaleX(-1);
+}
+.frame-bottom::before {
+  left: 0;
+  bottom: 0;
+  transform: scaleY(-1);
+}
+.frame-bottom::after {
+  right: 0;
+  bottom: 0;
+  transform: scale(-1, -1);
 }
 </style>
 
