@@ -1,45 +1,134 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Vintage Story Сервер TOPS</title>
-  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="sky">
-    <img src="img/cloud1.png" alt="cloud1" class="cloud cloud1" />
-    <img src="img/cloud2.png" alt="cloud2" class="cloud cloud2" />
-    <img src="img/cloud3.png" alt="cloud3" class="cloud cloud3" />
-    <h1>Vintage Story сервер TOPS</h1>
+  <div class="frame">
+    <div class="frame-top"></div>
+    <div class="frame-middle">
+      <div class="frame-side left"></div>
+      <div class="frame-content" id="content-container">
+        <div id="content">
+          <p>Выберите раздел, чтобы увидеть информацию.</p>
+        </div>
+      </div>
+      <div class="frame-side right"></div>
+    </div>
+    <div class="frame-bottom"></div>
   </div>
 
-  <nav>
-    <button onclick="showSection('links')">Ссылки и настройки</button>
-    <button onclick="showSection('commands')">Полезные команды</button>
-    <button onclick="showSection('mods')">Полезные моды</button>
-    <button onclick="showSection('cities')">Города и навигация</button>
-    <button onclick="showSection('places')">Интересные места</button>
-  </nav>
+  <style>
+    .frame {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      max-width: 800px;
+      margin: 2em auto;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
 
-  <div id="content">
-    <p>Выберите раздел, чтобы увидеть информацию.</p>
-  </div>
+    .frame-top,
+    .frame-bottom {
+      height: 32px;
+      background-image: url('img/topbot.png');
+      background-repeat: repeat-x;
+    }
 
-  <!-- Подключаем внешний JS-файл -->
-  <script src="sections.js"></script>
+    .frame-bottom {
+      transform: scaleY(-1);
+    }
 
-  <!-- Скрипт показа контента -->
+    .frame-middle {
+      display: flex;
+      flex-direction: row;
+      background-color: #fef8e0;
+    }
+
+    .frame-side {
+      width: 32px;
+      background-image: url('img/left.png');
+      background-repeat: repeat-y;
+    }
+
+    .frame-side.right {
+      transform: scaleX(-1);
+    }
+
+    .frame-content {
+      flex: 1;
+      padding: 2em;
+      font-family: 'Georgia', serif;
+      font-size: 1.2em;
+      text-align: center;
+    }
+  </style>
+
   <script>
+    const sections = {
+      links: {
+        text: `Ты новенький на сервере и не знаешь, что делать? В начале используй команду для добавления русского чата и настрой его: <br>
+        <code>/group join russian</code><br>
+        Изменения размера чата для удобства переключения между вкладками: <br>
+        <code>.chatsize 800 400</code><br>
+        Отключаем переключение на главный чат: <br>
+        Отключаем "Автопоказ чата" в Настройки -> Интерфейс<br><br>
+        Затем можно добавиться в самое крупное РУ сообщество на этом сервере: <br>
+        <a href="https://t.me/mylesvintagestory" target="_blank">https://t.me/mylesvintagestory</a><br><br>
+        Также полезные ссылки:<br>
+        Карта: <a href="https://map.tops.vintagestory.at/?x=-1&y=17&zoom=10" target="_blank">ссылка</a><br>
+        Навигатор: <a href="https://herrscher-of-sleeping.github.io/tl-navigator/" target="_blank">ссылка</a>`
+      },
+      commands: {
+        text: `Смена класса с перезарядкой в реальные полгода:<br>
+        <code>.charsel</code>`
+      },
+      mods: {
+        text: `Перевод сообщений в чате:<br>
+        <a href="https://mods.vintagestory.at/chattranslator" target="_blank">Chat Translator</a><br><br>
+        Показывает список игроков и их пинг на Tab:<br>
+        <a href="https://mods.vintagestory.at/playerlist" target="_blank">Player List</a><br><br>
+        Добавляет возможность смотреть все приваты игроков (по умолчанию на R англ.):<br>
+        <a href="https://mods.vintagestory.at/claimsradar" target="_blank">Claims Radar</a><br><br>
+        Больше информации, от времени горения угольной ямы до информации у какого торговца что и за сколько продается:<br>
+        <a href="https://mods.vintagestory.at/extrainfo" target="_blank">Extra Info</a>`
+      },
+      cities: {
+        text: `Ты должен решить для себя, что тебе интереснее — проходить игру в одиночку или же найти себе город и развиваться в социуме, используя торговлю на максимум. Если тебе интересно играть с живыми людьми, то вот список живых поселков с РУ игроками. На самом деле их больше, но тут указаны только те, которые оставили свои контакты и указали маршруты.<br><br>
+        <ul>
+          <li>Бронзовый город</li>
+          <li>Желтые высоты</li>
+          <li>Аграба</li>
+          <li>Эребор</li>
+        </ul>`
+      },
+      places: {
+        text: `<code>/waypoint addati gear 524 110 437 false #FF0000 Evangeлисткий храм</code><br>
+              <code>/waypoint addati gear -776 110 17047 false #FF0000 Музей диковин</code>`
+      }
+    };
+
     function showSection(key) {
       const section = sections[key];
-      const content = `
-        <img class="section-image" src="${section.img}" alt="${key}">
-        <p>${section.text}</p>
-      `;
-      document.getElementById('content').innerHTML = content;
+      const contentContainer = document.getElementById('content-container');
+      const contentEl = document.getElementById('content');
+      contentContainer.style.opacity = 0;
+      setTimeout(() => {
+        const content = `<p>${section.text}</p>`;
+        contentEl.innerHTML = content;
+        contentContainer.style.opacity = 1;
+      }, 200);
     }
+
+    const body = document.body;
+    body.style.backgroundImage = 'url("img/pixel-horizon-bg.png")';
+    body.style.backgroundSize = 'cover';
+    body.style.backgroundRepeat = 'no-repeat';
+    body.style.backgroundAttachment = 'fixed';
   </script>
 </body>
 </html>
-
