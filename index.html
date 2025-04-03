@@ -216,7 +216,15 @@ const sections = {
     Больше информации, от времени горения угольной ямы до информации у какого торговца что и за сколько продается:<br><a href="https://mods.vintagestory.at/extrainfo" target="_blank">Extra Info</a>`
   },
   cities: {
-    text: `Ты должен решить для себя, что тебе интереснее — проходить игру в одиночку или же найти себе город и развиваться в социуме, используя торговлю на максимум. Если тебе интересно играть с живыми людьми, то вот список живых поселков с РУ игроками.<br><br><ul><li>Бронзовый город</li><li>Желтые высоты</li><li>Аграба</li><li>Эребор</li></ul>`
+    text: `<p>Ты должен решить для себя, что тебе интереснее — проходить игру в одиночку или же найти себе город и развиваться в социуме, используя торговлю на максимум.</p>
+    <p>Если тебе интересно играть с живыми людьми, то вот список живых поселков с РУ игроками:</p>
+    <ul>
+      <li><a href="#" onclick=\"showCity('bronze')\">Бронзовый город</a></li>
+      <li><a href=\"#\" onclick=\"showCity('yellow')\">Желтые высоты</a></li>
+      <li><a href=\"#\" onclick=\"showCity('agraba')\">Аграба</a></li>
+      <li><a href=\"#\" onclick=\"showCity('erebor')\">Эребор</a></li>
+    </ul>
+    <div id='city-details'></div>`
   },
   places: {
     text: `<code onclick="copyToClipboard('/waypoint addati gear 524 110 437 false #FF0000 Evangeлисткий храм')" style="cursor:pointer; color:blue;">/waypoint addati gear 524 110 437 false #FF0000 Evangeлисткий храм</code><br>
@@ -237,7 +245,39 @@ function showSection(key) {
 
 function copyToClipboard(text) {
   navigator.clipboard.writeText(text).then(() => {
-    alert(`Скопировано: ${text}`);
+    // Уведомление убрано
   });
+}
+function copyToClipboard(text) {
+  navigator.clipboard.writeText(text);
+}
+
+function showCity(city) {
+  const container = document.getElementById('city-details');
+  if (city === 'yellow') {
+    container.innerHTML = `<div style='text-align: left; margin-top: 1em;'>
+      <h3>Желтые Высоты</h3>
+      <p>Жёлтые Высоты – это уникальное место, где жизнь отличается от привычных городских будней.</p>
+      <strong>🔨 Свобода творчества</strong>
+      <p>Свободная архитектура. Здесь каждый может строить, как пожелает, без жёстких правил и ограничений.</p>
+      <strong>🛠 Мастерство и ремесла</strong>
+      <p>Общедоступная кузница, дробилка и жернова для всех желающих.</p>
+      <strong>🌾 Единение с природой</strong>
+      <p>Поля, загоны, возможность заниматься сельским хозяйством и животными.</p>
+      <strong>🏡 Сообщество и независимость</strong>
+      <p>Нет иерархии, каждый может найти своё место и заниматься любимым делом.</p>
+      <p><em>Это не просто поселение – это образ жизни, где главное правило – свобода творить и развиваться.</em> 🔥</p>
+      <p><strong>Как добраться?</strong></p>
+      <p>Копируем команды и вводим в чат игры:</p>
+      <code onclick=\"copyToClipboard('/waypoint addati spiral 601 110 456 false #FF8000 TL №1')\" style='cursor:pointer; color:blue;'>/waypoint addati spiral 601 110 456 false #FF8000 TL №1</code><br>
+      <code onclick=\"copyToClipboard('/waypoint addati spiral 6142 110 4486 false #FF8000 TL №2')\" style='cursor:pointer; color:blue;'>/waypoint addati spiral 6142 110 4486 false #FF8000 TL №2</code><br>
+      <code onclick=\"copyToClipboard('/waypoint addati spiral -360 110 7368 false #FF8000 TL №3')\" style='cursor:pointer; color:blue;'>/waypoint addati spiral -360 110 7368 false #FF8000 TL №3</code><br>
+      <code onclick=\"copyToClipboard('/waypoint addati spiral -3698 110 9271 false #FF8000 Бронзовый город')\" style='cursor:pointer; color:blue;'>/waypoint addati spiral -3698 110 9271 false #FF8000 Бронзовый город</code><br>
+      <code onclick=\"copyToClipboard('/waypoint addati spiral -749 110 17028 false purple Майлзвиль')\" style='cursor:pointer; color:blue;'>/waypoint addati spiral -749 110 17028 false purple Майлзвиль</code><br>
+      <code onclick=\"copyToClipboard('/waypoint addati spiral 4665 110 24186 false #FFFF00 Желтые Высоты')\" style='cursor:pointer; color:blue;'>/waypoint addati spiral 4665 110 24186 false #FFFF00 Желтые Высоты</code>
+    </div>`;
+  } else {
+    container.innerHTML = `<p style='margin-top:1em;'>Информация о городе скоро появится.</p>`;
+  }
 }
 </script>
