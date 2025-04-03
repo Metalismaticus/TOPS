@@ -117,7 +117,7 @@ nav button {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  max-width: 800px;
+  width: 864px;
   margin: 2em auto;
   opacity: 1;
   transition: opacity 0.3s ease;
@@ -155,10 +155,55 @@ nav button {
 }
 
 .frame-content {
-  flex: 1;
+  width: 800px;
   padding: 2em;
   font-family: 'Georgia', serif;
   font-size: 1.2em;
   text-align: center;
+  box-sizing: border-box;
 }
 </style>
+
+<script>
+  const sections = {
+    links: {
+      text: `Ты новенький на сервере и не знаешь, что делать? В начале используй команду для добавления русского чата и настрой его: <br>
+      <code>/group join russian</code><br>
+      Изменения размера чата для удобства переключения между вкладками: <br>
+      <code>.chatsize 800 400</code><br>
+      Отключаем переключение на главный чат: <br>
+      Отключаем "Автопоказ чата" в Настройки -> Интерфейс<br><br>
+      Затем можно добавиться в самое крупное РУ сообщество на этом сервере: <br>
+      <a href="https://t.me/mylesvintagestory" target="_blank">https://t.me/mylesvintagestory</a><br><br>
+      Также полезные ссылки:<br>
+      Карта: <a href="https://map.tops.vintagestory.at/?x=-1&y=17&zoom=10" target="_blank">ссылка</a><br>
+      Навигатор: <a href="https://herrscher-of-sleeping.github.io/tl-navigator/" target="_blank">ссылка</a>`
+    },
+    commands: {
+      text: `Смена класса с перезарядкой в реальные полгода:<br><code>.charsel</code>`
+    },
+    mods: {
+      text: `Перевод сообщений в чате:<br><a href="https://mods.vintagestory.at/chattranslator" target="_blank">Chat Translator</a><br><br>
+      Показывает список игроков и их пинг на Tab:<br><a href="https://mods.vintagestory.at/playerlist" target="_blank">Player List</a><br><br>
+      Добавляет возможность смотреть все приваты игроков (по умолчанию на R англ.):<br><a href="https://mods.vintagestory.at/claimsradar" target="_blank">Claims Radar</a><br><br>
+      Больше информации, от времени горения угольной ямы до информации у какого торговца что и за сколько продается:<br><a href="https://mods.vintagestory.at/extrainfo" target="_blank">Extra Info</a>`
+    },
+    cities: {
+      text: `Ты должен решить для себя, что тебе интереснее — проходить игру в одиночку или же найти себе город и развиваться в социуме, используя торговлю на максимум. Если тебе интересно играть с живыми людьми, то вот список живых поселков с РУ игроками.<br><br><ul><li>Бронзовый город</li><li>Желтые высоты</li><li>Аграба</li><li>Эребор</li></ul>`
+    },
+    places: {
+      text: `<code>/waypoint addati gear 524 110 437 false #FF0000 Evangeлисткий храм</code><br><code>/waypoint addati gear -776 110 17047 false #FF0000 Музей диковин</code>`
+    }
+  };
+
+  function showSection(key) {
+    const section = sections[key];
+    const contentContainer = document.getElementById('content-container');
+    const contentEl = document.getElementById('content');
+    contentContainer.style.opacity = 0;
+    setTimeout(() => {
+      contentEl.innerHTML = `<p>${section.text}</p>`;
+      contentContainer.style.opacity = 1;
+    }, 200);
+  }
+</script>
