@@ -218,8 +218,8 @@ const sections = {
   cities: {
     text: `<p>Ты должен решить для себя, что тебе интереснее — проходить игру в одиночку или же найти себе город и развиваться в социуме, используя торговлю на максимум.</p>
     <p>Если тебе интересно играть с живыми людьми, то вот список живых поселков с РУ игроками:</p>
-    <ul>
-      <li><a href="#" onclick=\"showCity('bronze')\">Бронзовый город</a></li>
+    <ul style="list-style: none; padding-left: 0; text-align: left;">
+      <li><a href="#" onclick="showCity('bronze')">Бронзовый город</a></li>
       <li><a href=\"#\" onclick=\"showCity('yellow')\">Желтые высоты</a></li>
       <li><a href=\"#\" onclick=\"showCity('agraba')\">Аграба</a></li>
       <li><a href=\"#\" onclick=\"showCity('erebor')\">Эребор</a></li>
@@ -268,13 +268,24 @@ function showCity(city) {
       <p>Нет иерархии, каждый может найти своё место и заниматься любимым делом.</p>
       <p><em>Это не просто поселение – это образ жизни, где главное правило – свобода творить и развиваться.</em> 🔥</p>
       <p><strong>Как добраться?</strong></p>
-      <p>Копируем команды и вводим в чат игры:</p>
-      <code onclick=\"copyToClipboard('/waypoint addati spiral 601 110 456 false #FF8000 TL №1')\" style='cursor:pointer; color:blue;'>/waypoint addati spiral 601 110 456 false #FF8000 TL №1</code><br>
-      <code onclick=\"copyToClipboard('/waypoint addati spiral 6142 110 4486 false #FF8000 TL №2')\" style='cursor:pointer; color:blue;'>/waypoint addati spiral 6142 110 4486 false #FF8000 TL №2</code><br>
-      <code onclick=\"copyToClipboard('/waypoint addati spiral -360 110 7368 false #FF8000 TL №3')\" style='cursor:pointer; color:blue;'>/waypoint addati spiral -360 110 7368 false #FF8000 TL №3</code><br>
-      <code onclick=\"copyToClipboard('/waypoint addati spiral -3698 110 9271 false #FF8000 Бронзовый город')\" style='cursor:pointer; color:blue;'>/waypoint addati spiral -3698 110 9271 false #FF8000 Бронзовый город</code><br>
-      <code onclick=\"copyToClipboard('/waypoint addati spiral -749 110 17028 false purple Майлзвиль')\" style='cursor:pointer; color:blue;'>/waypoint addati spiral -749 110 17028 false purple Майлзвиль</code><br>
-      <code onclick=\"copyToClipboard('/waypoint addati spiral 4665 110 24186 false #FFFF00 Желтые Высоты')\" style='cursor:pointer; color:blue;'>/waypoint addati spiral 4665 110 24186 false #FFFF00 Желтые Высоты</code>
+      <p>маршрут от спавна, копируем команды и по очереди и вводим в чат игры:</p>
+      <code onclick="copyToClipboard('/waypoint addati spiral 601 110 456 false #FF8000 TL №1')" style='cursor:pointer; color:blue;'>/waypoint addati spiral 601 110 456 false #FF8000 TL №1</code><br>
+      <code onclick="copyToClipboard('/waypoint addati spiral 6142 110 4486 false #FF8000 TL №2')" style='cursor:pointer; color:blue;'>/waypoint addati spiral 6142 110 4486 false #FF8000 TL №2</code><br>
+      <code onclick="copyToClipboard('/waypoint addati spiral -360 110 7368 false #FF8000 TL №3')" style='cursor:pointer; color:blue;'>/waypoint addati spiral -360 110 7368 false #FF8000 TL №3</code><br>
+      <code onclick="copyToClipboard('/waypoint addati spiral -3698 110 9271 false #FF8000 Бронзовый город')" style='cursor:pointer; color:blue;'>/waypoint addati spiral -3698 110 9271 false #FF8000 Бронзовый город</code><br>
+      <code onclick="copyToClipboard('/waypoint addati spiral -749 110 17028 false purple Майлзвиль')" style='cursor:pointer; color:blue;'>/waypoint addati spiral -749 110 17028 false purple Майлзвиль</code><br>
+      <code onclick="copyToClipboard('/waypoint addati spiral 4665 110 24186 false #FFFF00 Желтые Высоты')" style='cursor:pointer; color:blue;'>/waypoint addati spiral 4665 110 24186 false #FFFF00 Желтые Высоты</code>
+    </div>`;
+  } else if (city === 'bronze') {
+    container.innerHTML = `<div style='text-align: left; margin-top: 1em;'>
+      <h3>Бронзовый город</h3>
+      <p>здесь могло быть описание 🙂</p>
+      <p><strong>Как добраться?</strong></p>
+      <p>маршрут от спавна, копируем команды и по очереди и вводим в чат игры:</p>
+      <code onclick="copyToClipboard('/waypoint addati spiral 601 110 456 false #FF8000 TL №1')" style='cursor:pointer; color:blue;'>/waypoint addati spiral 601 110 456 false #FF8000 TL №1</code><br>
+      <code onclick="copyToClipboard('/waypoint addati spiral 6142 110 4486 false #FF8000 TL №2')" style='cursor:pointer; color:blue;'>/waypoint addati spiral 6142 110 4486 false #FF8000 TL №2</code><br>
+      <code onclick="copyToClipboard('/waypoint addati spiral -360 110 7368 false #FF8000 TL №3')" style='cursor:pointer; color:blue;'>/waypoint addati spiral -360 110 7368 false #FF8000 TL №3</code><br>
+      <code onclick="copyToClipboard('/waypoint addati spiral -3698 110 9271 false #FF8000 Бронзовый город')" style='cursor:pointer; color:blue;'>/waypoint addati spiral -3698 110 9271 false #FF8000 Бронзовый город</code>
     </div>`;
   } else {
     container.innerHTML = `<p style='margin-top:1em;'>Информация о городе скоро появится.</p>`;
