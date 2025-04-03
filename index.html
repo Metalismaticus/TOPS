@@ -11,6 +11,8 @@
   <button onclick="showSection('mods')">Полезные моды</button>
   <button onclick="showSection('cities')">Города и навигация</button>
   <button onclick="showSection('places')">Интересные места</button>
+  <button onclick="showSection('events')">Ивенты</button>
+  <button onclick="showSection('submit')">Добавить информацию</button>
 </nav>
 
 <div class="frame">
@@ -192,6 +194,12 @@ nav button {
 
 <script>
 const sections = {
+  submit: {
+    text: `Хотите увидеть свой маршрут, поселение или поделиться интересным лайфхаком? Свяжитесь с автором — <a href='https://t.me/Metalismatic' target='_blank'>@Metalismatic</a> в чате игры или в телеграм.`
+  },
+  events: {
+    text: `В ближайшее время не ожидается ивентов`
+  },
   links: {
     text: `Ты новенький на сервере и не знаешь, что делать? В начале используй команду для добавления русского чата и настрой его: <br>
     <code onclick="copyToClipboard('/group join russian')" style="cursor:pointer; color:blue;">/group join russian</code><br>
@@ -228,7 +236,8 @@ const sections = {
   },
   places: {
     text: `<code onclick="copyToClipboard('/waypoint addati gear 524 110 437 false #FF0000 Evangeлисткий храм')" style="cursor:pointer; color:blue;">/waypoint addati gear 524 110 437 false #FF0000 Evangeлисткий храм</code><br>
-    <code onclick="copyToClipboard('/waypoint addati gear -776 110 17047 false #FF0000 Музей диковин')" style="cursor:pointer; color:blue;">/waypoint addati gear -776 110 17047 false #FF0000 Музей диковин</code>`
+    <code onclick="copyToClipboard('/waypoint addati gear -776 110 17047 false #FF0000 Музей диковин')" style="cursor:pointer; color:blue;">/waypoint addati gear -776 110 17047 false #FF0000 Музей диковин</code>
+    <code onclick="copyToClipboard('/waypoint addati gear -348000 110 -289815 false #FF0000 Дача Рарога')" style="cursor:pointer; color:blue;">/waypoint addati gear -348000 110 -289815 false #FF0000 Дача Рарога</code>`
   }
 };
 
