@@ -29,6 +29,7 @@
 
 <style>
 body {
+  overflow-x: hidden;
   background-image: url("img/pixel-horizon-bg.png");
   background-size: cover;
   background-repeat: no-repeat;
@@ -118,7 +119,8 @@ nav button {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  width: 864px;
+  max-width: 864px;
+  width: 100%;
   margin: 2em auto;
   opacity: 1;
   transition: opacity 0.3s ease;
@@ -159,12 +161,14 @@ nav button {
 }
 
 .frame-content {
-  width: 800px;
+  flex: 1;
   padding: 2em;
   font-family: 'Georgia', serif;
   font-size: 1.2em;
   text-align: center;
   box-sizing: border-box;
+  max-width: 800px;
+  width: 100%;
 }
 .frame-top::before, .frame-top::after, .frame-bottom::before, .frame-bottom::after {
   content: "";
