@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vintage Story Сервер</title>
+  <title>Vintage Story Сервер TOPS</title>
   <style>
     body {
       margin: 0;
@@ -14,18 +14,50 @@
       flex-direction: column;
       align-items: center;
     }
-    header {
-      width: 100%;
-      background-image: url('img/header-bg.png');
-      background-size: cover;
-      background-position: center;
+    .sky {
       position: relative;
+      width: 100%;
       height: 200px;
+      overflow: hidden;
+      background-color: #78aad2;
       display: flex;
       align-items: center;
-      padding-left: 1em;
     }
-    header h1 {
+    .cloud {
+      position: absolute;
+      width: 128px;
+      opacity: 0.8;
+    }
+    .cloud1 {
+      top: 30px;
+      left: -150px;
+      animation: cloudmove1 60s linear infinite;
+    }
+    .cloud2 {
+      top: 60px;
+      left: -250px;
+      animation: cloudmove2 80s linear infinite;
+    }
+    .cloud3 {
+      top: 90px;
+      left: -350px;
+      animation: cloudmove3 100s linear infinite;
+    }
+    @keyframes cloudmove1 {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(200vw); }
+    }
+    @keyframes cloudmove2 {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(200vw); }
+    }
+    @keyframes cloudmove3 {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(200vw); }
+    }
+    .sky h1 {
+      position: relative;
+      margin-left: 20px;
       color: #fff3c1;
       font-size: 2em;
       background-color: rgba(0, 0, 0, 0.5);
@@ -73,22 +105,21 @@
       nav {
         flex-direction: column;
       }
-      header {
-        height: 150px;
-        padding-left: 0.5em;
-        justify-content: center;
-      }
-      header h1 {
+      .sky h1 {
         font-size: 1.2em;
         text-align: center;
+        margin-left: 0;
       }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Vintage Story — Сервер</h1>
-  </header>
+  <div class="sky">
+    <img src="img/cloud1.png" alt="cloud1" class="cloud cloud1">
+    <img src="img/cloud2.png" alt="cloud2" class="cloud cloud2">
+    <img src="img/cloud3.png" alt="cloud3" class="cloud cloud3">
+    <h1>Vintage Story сервер TOPS</h1>
+  </div>
   <nav>
     <button onclick="showSection('links')">Ссылки и настройки</button>
     <button onclick="showSection('commands')">Полезные команды</button>
