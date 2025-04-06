@@ -94,7 +94,8 @@ function showCity(city) {
   } else if (city === "bronze") {
     container.innerHTML = `<div style='text-align: left; margin-top: 1em;'>
         <h3>Бронзовый город</h3>
-        <p>здесь могло быть описание 🙂</p>
+        <p>Гордый наследний Майлзвиля 🙂</p>
+        <p>Активный город с развитой инфраструкторой. Помогаем новичкам!</p>
         <p><strong>Как добраться?</strong></p>
         <p>маршрут от спавна, копируем команды и по очереди и вводим в чат игры:</p>
         <code onclick="copyToClipboard('/waypoint addati spiral 601 110 456 false #FF8000 TL №1')" style='cursor:pointer; color:blue;'>/waypoint addati spiral 601 110 456 false #FF8000 TL №1</code><br>
