@@ -34,8 +34,8 @@ const sections = {
       <ul style="list-style: none; padding-left: 0; text-align: left;">
         <li><a href="#" onclick="showCity('bronze')">Бронзовый город</a></li>
         <li><a href=\"#\" onclick=\"showCity('yellow')\">Желтые высоты</a></li>
-        <li><a href=\"#\" onclick=\"showCity('agraba')\">Аграба</a></li>
-        <li><a href=\"#\" onclick=\"showCity('erebor')\">Эребор</a></li>
+      <!-- <li><a href="#" onclick="showCity('agraba')">Аграба</a></li> -->
+      <!-- <li><a href="#" onclick="showCity('erebor')">Эребор</a></li> -->
       </ul>
       <div id='city-details'></div>`,
   },
