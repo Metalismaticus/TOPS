@@ -26,7 +26,8 @@ const sections = {
     text: `Перевод сообщений в чате:<br><a href="https://mods.vintagestory.at/chattranslator" target="_blank">Chat Translator</a><br><br>
       Показывает список игроков и их пинг на Tab:<br><a href="https://mods.vintagestory.at/playerlist" target="_blank">Player List</a><br><br>
       Добавляет возможность смотреть все приваты игроков (по умолчанию на R англ.):<br><a href="https://mods.vintagestory.at/claimsradar" target="_blank">Claims Radar</a><br><br>
-      Больше информации, от времени горения угольной ямы до информации у какого торговца что и за сколько продается:<br><a href="https://mods.vintagestory.at/extrainfo" target="_blank">Extra Info</a>`,
+      Больше информации, от времени горения угольной ямы до информации у какого торговца что и за сколько продается:<br><a href="https://mods.vintagestory.at/extrainfo" target="_blank">Extra Info</a>
+      Выведение информации на экран, температура, таймер до шторма и т.д., управление на U:<br><a href="https://mods.vintagestory.at/show/mod/9817" target="_blank">Status Hud Continued</a>`,
   },
   cities: {
     text: `<p>Ты должен решить для себя, что тебе интереснее — проходить игру в одиночку или же найти себе город и развиваться в социуме, используя торговлю на максимум.</p>
