@@ -31,14 +31,40 @@ const sections = {
   },
   cities: {
     text: `<p>Ты должен решить для себя, что тебе интереснее — проходить игру в одиночку или же найти себе город и развиваться в социуме, используя торговлю на максимум.</p>
-      <p>Если тебе интересно играть с живыми людьми, то вот список живых поселков с РУ игроками, которые захотели оставить свои координаты для новичков:</p>
-      <ul style="list-style: none; padding-left: 0; text-align: left;">
-        <li><a href="#" onclick="showCity('bronze')">Бронзовый город</a></li>
-        <li><a href=\"#\" onclick=\"showCity('yellow')\">Желтые высоты</a></li>
-      <!-- <li><a href="#" onclick="showCity('agraba')">Аграба</a></li> -->
-      <!-- <li><a href="#" onclick="showCity('erebor')">Эребор</a></li> -->
-      </ul>
-      <div id='city-details'></div>`,
+      <p>Посёлки делятся на активные, неуточнённые и мёртвые. Ниже приведена таблица:</p>
+
+      <table style="width:100%; text-align:left; border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th style="padding:0.5em; border-bottom: 1px solid #ccc;">🏡 Живые</th>
+            <th style="padding:0.5em; border-bottom: 1px solid #ccc;">❓ Статус неизвестен</th>
+            <th style="padding:0.5em; border-bottom: 1px solid #ccc;">💀 Мёртвые</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:0.5em;"><a href="#" onclick="showCity('bronze')">Бронзовый город</a></td>
+            <td style="padding:0.5em;">Небесный город</td>
+            <td style="padding:0.5em;">Майлзвиль</td>
+          </tr>
+          <tr>
+            <td style="padding:0.5em;"><a href="#" onclick="showCity('yellow')">Желтые высоты</a></td>
+            <td style="padding:0.5em;">Агроба</td>
+            <td style="padding:0.5em;">Гондор</td>
+          </tr>
+          <tr>
+            <td style="padding:0.5em;">—</td>
+            <td style="padding:0.5em;">Эребор</td>
+            <td style="padding:0.5em;">Казахстан</td>
+          </tr>
+          <tr>
+            <td style="padding:0.5em;">—</td>
+            <td style="padding:0.5em;">Лейктаун</td>
+            <td style="padding:0.5em;">—</td>
+          </tr>
+        </tbody>
+      </table>
+      <div id='city-details'></div>`
   },
   places: {
     text: `<code onclick="copyToClipboard('/waypoint addati gear 524 110 437 false #FF0000 Evangeлисткий храм')" style="cursor:pointer; color:blue;">/waypoint addati gear 524 110 437 false #FF0000 Evangeлисткий храм</code><br>
