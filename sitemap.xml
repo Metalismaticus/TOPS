@@ -3,6 +3,9 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
+    <loc>https://metalismaticus.github.io/TOPS/towns/agrabah/</loc>
+  </url>
+  <url>
     <loc>https://metalismaticus.github.io/TOPS/trade/</loc>
   </url>
   <url>
@@ -10,6 +13,9 @@
   </url>
   <url>
     <loc>https://metalismaticus.github.io/TOPS/</loc>
+  </url>
+  <url>
+    <loc>https://metalismaticus.github.io/TOPS/towns/gondor/</loc>
   </url>
   <url>
     <loc>https://metalismaticus.github.io/TOPS/call_me/</loc>
@@ -21,7 +27,16 @@
     <loc>https://metalismaticus.github.io/TOPS/ivents/</loc>
   </url>
   <url>
+    <loc>https://metalismaticus.github.io/TOPS/towns/kazakhstan/</loc>
+  </url>
+  <url>
     <loc>https://metalismaticus.github.io/TOPS/towns/laketown/</loc>
+  </url>
+  <url>
+    <loc>https://metalismaticus.github.io/TOPS/towns/milesville/</loc>
+  </url>
+  <url>
+    <loc>https://metalismaticus.github.io/TOPS/towns/sky-city/</loc>
   </url>
   <url>
     <loc>https://metalismaticus.github.io/TOPS/news/</loc>
@@ -43,5 +58,8 @@
   </url>
   <url>
     <loc>https://metalismaticus.github.io/TOPS/turism/</loc>
+  </url>
+  <url>
+    <loc>https://metalismaticus.github.io/TOPS/towns/erebor/</loc>
   </url>
 </urlset>
