@@ -734,10 +734,15 @@ class="bg-primary-500 hover:bg-primary-600 text-white font-semibold py-2 px-6 ro
     e.preventDefault();
 
     const name = form.name.value.trim();
-    const telegram = form.telegram.value.trim();
+    let telegram = form.telegram.value.trim();
     const message = form.message.value.trim();
 
     if (!name || !message) return;
+
+    // Добавим @ к телеграму, если не указано
+    if (telegram && !telegram.startsWith("@")) {
+      telegram = "@" + telegram;
+    }
 
     button.disabled = true;
     button.textContent = "Отправка...";
