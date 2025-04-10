@@ -728,6 +728,7 @@ class="bg-primary-500 hover:bg-primary-600 text-white font-semibold py-2 px-6 ro
 <script>
   const form = document.getElementById("feedbackForm");
   const button = document.getElementById("submitBtn");
+  const defaultText = "Отправить предложение";
 
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
@@ -736,13 +737,12 @@ class="bg-primary-500 hover:bg-primary-600 text-white font-semibold py-2 px-6 ro
     const telegram = form.telegram.value.trim();
     const message = form.message.value.trim();
 
-    if (!name || !message) {
-      alert("Пожалуйста, заполните имя и сообщение!");
-      return;
-    }
+    if (!name || !message) return;
 
     button.disabled = true;
     button.textContent = "Отправка...";
+    button.classList.remove("bg-green-600", "bg-red-600");
+    button.classList.add("bg-primary-500");
 
     try {
       const res = await fetch("https://obratka.vercel.app/api/send", {
@@ -754,17 +754,27 @@ class="bg-primary-500 hover:bg-primary-600 text-white font-semibold py-2 px-6 ro
       const result = await res.json();
 
       if (res.ok) {
-        alert("✅ Сообщение отправлено!");
+        button.classList.remove("bg-primary-500");
+        button.classList.add("bg-green-600");
+        button.textContent = "✅ Успешно!";
         form.reset();
       } else {
-        alert("❌ Ошибка: " + (result.details || result.error));
+        button.classList.remove("bg-primary-500");
+        button.classList.add("bg-red-600");
+        button.textContent = "❌ Ошибка!";
       }
     } catch (err) {
-      alert("❌ Не удалось отправить: " + err.message);
+      button.classList.remove("bg-primary-500");
+      button.classList.add("bg-red-600");
+      button.textContent = "❌ Ошибка сети!";
     }
 
-    button.disabled = false;
-    button.textContent = "Отправить предложение";
+    setTimeout(() => {
+      button.disabled = false;
+      button.classList.remove("bg-green-600", "bg-red-600");
+      button.classList.add("bg-primary-500");
+      button.textContent = defaultText;
+    }, 3000);
   });
 </script>
 
