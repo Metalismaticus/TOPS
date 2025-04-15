@@ -8,14 +8,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>404 Page not found &middot; Vintage Story TOPS</title>
-  <meta name="title" content="404 Page not found &middot; Vintage Story TOPS" />
+  <title>Актуальные цены &middot; Vintage Story TOPS</title>
+  <meta name="title" content="Актуальные цены &middot; Vintage Story TOPS" />
   
   
   
   
   
-  <link rel="canonical" href="https://metalismaticus.github.io/TOPS/404.html" />
+  <link rel="canonical" href="https://metalismaticus.github.io/TOPS/trade/" />
+  
+  <link rel="alternate" type="application/rss+xml" href="/TOPS/trade/index.xml" title="Vintage Story TOPS" />
   
   
   
@@ -60,13 +62,13 @@
   
   
   
-  <meta property="og:title" content="404 Page not found" />
+  <meta property="og:title" content="Актуальные цены" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://metalismaticus.github.io/TOPS/404.html" /><meta property="og:site_name" content="Vintage Story TOPS" />
+<meta property="og:url" content="https://metalismaticus.github.io/TOPS/trade/" /><meta property="og:site_name" content="Vintage Story TOPS" />
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="404 Page not found"/>
+<meta name="twitter:title" content="Актуальные цены"/>
 <meta name="twitter:description" content=""/>
 
   
@@ -576,15 +578,228 @@
   <div class="relative flex flex-col grow">
     <main id="main-content" class="grow">
       
-  <h1 class="mb-3 text-4xl font-extrabold">Page Not Found 😕</h1>
-  <p class="mt-8 mb-12 text-neutral-400 dark:text-neutral-500">
-    Error 404
-  </p>
-  <div class="prose dark:prose-invert">
-    <p>It seems that the page you've requested does not exist.</p>
-  </div>
+
+
+<article>
+  
+  
+  
+  
+  
+  
+ 
+  
+   
+  
+ 
+
+
+
+
+
+    
+    <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
+    style="background-image:url(/TOPS/image_hua141e283608e8f31805b53cf496e5f3f_450358_1200x0_resize_q75_box.jpg);">
+    
+
+
+    <div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal">
+    </div>
+    <div
+        class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal">
+    </div>
+</div>
+
+<div id="background-blur" class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
+<script>
+    window.addEventListener('scroll', function (e) {
+        var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        var background_blur = document.getElementById('background-blur');
+        background_blur.style.opacity = (scroll / 300)
+    });
+</script>
+
+  
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      Актуальные цены
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+
+  
+  
+</div>
+
+
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+
+    
+      
+      
 
       
+
+      
+
+    
+
+  </header>
+  
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+    
+    
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+        
+
+
+        <div class="article-content max-w-prose mb-20">
+          <p>Страница будет редактироваться и дополняться, на данный момент указанны цены на начало 2025 года, некоторые пункты могут сильно различаться.</p>
+<div style="overflow-x:auto; max-width:100%; margin: 1em 0;">
+  <table id="sheetTable" style="width:100%; border-collapse: collapse; font-size: 0.95em;">
+    <thead></thead>
+    <tbody></tbody>
+  </table>
+</div>
+<script>
+fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vRyjFRAAwVq5lusEL_Uw8sgVWsvDt_m6_mNKJg3CstRpWkoUT2ytlwi6e4xiLTsoVqwMp4xn2gIrEae/pub?output=csv")
+  .then(response => response.text())
+  .then(data => {
+    const rows = data.trim().split("\n").map(r => r.split(","));
+    const table = document.getElementById("sheetTable");
+    const thead = table.querySelector("thead");
+    const tbody = table.querySelector("tbody");
+
+    // Заголовки (только первые 3)
+    const headerRow = document.createElement("tr");
+    rows[0].slice(0, 3).forEach(cell => {
+      const th = document.createElement("th");
+      th.textContent = cell;
+      th.style.backgroundColor = "#c28b47";
+      th.style.color = "white";
+      th.style.padding = "8px";
+      th.style.border = "1px solid rgba(255,255,255,0.2)";
+      th.style.wordBreak = "break-word";
+      headerRow.appendChild(th);
+    });
+    thead.appendChild(headerRow);
+
+    // Данные (только первые 3 столбца)
+    rows.slice(1).forEach(row => {
+      const tr = document.createElement("tr");
+      row.slice(0, 3).forEach(cell => {
+        const td = document.createElement("td");
+        td.textContent = cell;
+        td.style.backgroundColor = "rgba(255, 255, 255, 0.1)"; // светло-серый на тёмном фоне
+        td.style.color = "white";
+        td.style.padding = "8px";
+        td.style.border = "1px solid rgba(255,255,255,0.1)";
+        td.style.wordBreak = "break-word";
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+  });
+</script>
+
+          
+          
+          
+        </div>
+        
+        
+
+        
+        
+
+          
+      </div>
+     
+      
+      
+        
+        
+      <script>
+        var oid = "views_trade\\_index.md"
+        var oid_likes = "likes_trade\\_index.md"
+      </script>
+      
+      
+      <script type="text/javascript" src="/TOPS/js/page.min.b06a29d42a4ed16787978e2eee1e8c797b7698db2bc14ccee78f5c80ac566fc996190a73ad80a5e987558474b20b96fa38f7d85b405f165ff72b7b163c5ad11b.js" integrity="sha512-sGop1CpO0WeHl44u7h6MeXt2mNsrwUzO549cgKxWb8mWGQpzrYCl6YdVhHSyC5b6OPfYW0BfFl/3K3sWPFrRGw=="></script>
+      
+  
+    </section>
+  <footer class="pt-8 max-w-prose print:hidden">
+
+    
+  
+
+
+    
+  </footer>
+</article>
+
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="Scroll to top" title="Scroll to top">
+    &uarr;
+  </a>
+</div>
     </main><footer id="site-footer" class="py-10 print:hidden">
   
   
