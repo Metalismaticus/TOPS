@@ -204,9 +204,9 @@
           </p>
         </a>
         
-        <a href=""  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        <a href="/TOPS/lifehacks/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
           
-          <p class="text-sm font-sm" title="">
+          <p class="text-sm font-sm" title="Полезные фишки">
             Полезные Фишки
           </p>
         </a>
@@ -436,9 +436,9 @@
 </li>
 
 <li class="mt-1">
-    <a href=""  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    <a href="/TOPS/lifehacks/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
         
-        <p class="text-sm font-small" title="">
+        <p class="text-sm font-small" title="Полезные фишки">
             Полезные Фишки
         </p>
     </a>
@@ -708,53 +708,7 @@
 
 
         <div class="article-content max-w-prose mb-20">
-          <p>Страница будет редактироваться и дополняться, на данный момент указанны цены на начало 2025 года, некоторые пункты могут сильно различаться.</p>
-<div style="overflow-x:auto; max-width:100%; margin: 1em 0;">
-  <table id="sheetTable" style="width:100%; border-collapse: collapse; font-size: 0.95em;">
-    <thead></thead>
-    <tbody></tbody>
-  </table>
-</div>
-<script>
-fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vRyjFRAAwVq5lusEL_Uw8sgVWsvDt_m6_mNKJg3CstRpWkoUT2ytlwi6e4xiLTsoVqwMp4xn2gIrEae/pub?output=csv")
-  .then(response => response.text())
-  .then(data => {
-    const rows = data.trim().split("\n").map(r => r.split(","));
-    const table = document.getElementById("sheetTable");
-    const thead = table.querySelector("thead");
-    const tbody = table.querySelector("tbody");
-
-    // Заголовки (только первые 3)
-    const headerRow = document.createElement("tr");
-    rows[0].slice(0, 3).forEach(cell => {
-      const th = document.createElement("th");
-      th.textContent = cell;
-      th.style.backgroundColor = "#c28b47";
-      th.style.color = "white";
-      th.style.padding = "8px";
-      th.style.border = "1px solid rgba(255,255,255,0.2)";
-      th.style.wordBreak = "break-word";
-      headerRow.appendChild(th);
-    });
-    thead.appendChild(headerRow);
-
-    // Данные (только первые 3 столбца)
-    rows.slice(1).forEach(row => {
-      const tr = document.createElement("tr");
-      row.slice(0, 3).forEach(cell => {
-        const td = document.createElement("td");
-        td.textContent = cell;
-        td.style.backgroundColor = "rgba(255, 255, 255, 0.1)"; // светло-серый на тёмном фоне
-        td.style.color = "white";
-        td.style.padding = "8px";
-        td.style.border = "1px solid rgba(255,255,255,0.1)";
-        td.style.wordBreak = "break-word";
-        tr.appendChild(td);
-      });
-      tbody.appendChild(tr);
-    });
-  });
-</script>
+          <p>💰  <strong>информация обновляется</strong></p>
 
           
           
