@@ -708,7 +708,90 @@
 
 
         <div class="article-content max-w-prose mb-20">
-          <p>💰  <strong>информация обновляется</strong></p>
+          <div class="lead text-neutral-500 dark:text-neutral-400 !mb-9 text-xl">
+  За составление таблицы благодарите Tens
+</div>
+
+<div class="prices-container">
+  <!-- 1) Тут появится дата без иконки -->
+  <p id="prices-date" class="mb-4 text-sm text-white/80">
+    <strong id="prices-date-text">Загрузка…</strong>
+  </p>
+  <div style="overflow-x:auto; max-width:100%; margin:1em 0;">
+    <table id="prices-table"
+      class="w-full text-center text-white/90 text-sm rounded-lg overflow-hidden"
+      style="border-collapse:collapse; background:rgba(255,255,255,0.02);">
+      <thead></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+<script>
+window.addEventListener('DOMContentLoaded', async () => {
+  const TSV_URL = 'https://docs.google.com/spreadsheets/d/1NNmHVXcjt6fd9kHdxpJEJhsgHDpoDDdvFeh_QNGBEts/export?gid=1679760452&format=tsv';
+  const raw = await fetch(TSV_URL).then(r => r.text());
+  const rows = raw.trim().split('\n').map(r => r.split('\t'));
+  // Достаём дату
+  const headerLine = rows[0].join(' ');
+  const m = headerLine.match(/актуальн\w*\s+([\d.]+)/i);
+  document.getElementById('prices-date-text').textContent =
+    m ? `Актуальность ${m[1]}` : headerLine;
+
+  const thead = document.querySelector('#prices-table thead');
+  const tbody = document.querySelector('#prices-table tbody');
+
+  // Шапка
+  const trHead = document.createElement('tr');
+  rows[1].forEach(text => {
+    const th = document.createElement('th');
+    th.textContent = text;
+    Object.assign(th.style, {
+      padding: '12px',
+      background: 'rgba(72,102,136,0.85)',
+      color: 'white',
+      borderBottom: '1px solid rgba(255,255,255,0.1)'
+    });
+    trHead.append(th);
+  });
+  thead.append(trHead);
+
+  // Тело
+  rows.slice(2).forEach(r => {
+    const [name, min, max, avg] = r.map(c => c.trim());
+    // Группа
+    if (name && !min && !max && !avg) {
+      const tr = document.createElement('tr');
+      const td = document.createElement('td');
+      td.colSpan = 4;
+      td.textContent = `🔹 ${name}`;
+      Object.assign(td.style, {
+        textAlign: 'left',
+        padding: '8px 12px',
+        background: 'rgba(180,180,180,0.08)',
+        fontWeight: 'bold'
+      });
+      tr.append(td);
+      tbody.append(tr);
+      return;
+    }
+    // Пустая строка
+    if (!name && !min && !max && !avg) return;
+    // Обычная строка
+    const tr = document.createElement('tr');
+    [name, min || '—', max || '—', avg || '—'].forEach((txt, i) => {
+      const td = document.createElement('td');
+      td.textContent = txt;
+      Object.assign(td.style, {
+        padding: '8px 12px',
+        borderBottom: '1px solid rgba(255,255,255,0.05)'
+      });
+      if (tbody.children.length % 2 === 0) td.style.background = 'rgba(255,255,255,0.03)';
+      tr.append(td);
+    });
+    tbody.append(tr);
+  });
+});
+</script>
 
           
           
