@@ -19,5 +19,15 @@
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://metalismaticus.github.io/TOPS/news/15.04.2025/featured.jpg" />
     </item>
     
+    <item>
+      <title>Сводка новостей 17.04.2025</title>
+      <link>https://metalismaticus.github.io/TOPS/news/17.04.2025/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://metalismaticus.github.io/TOPS/news/17.04.2025/</guid>
+      <description>новости и происшествия</description>
+      
+    </item>
+    
   </channel>
 </rss>
