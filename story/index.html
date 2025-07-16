@@ -727,11 +727,9 @@
           <p>Путь к Резонансным архивам занимает на олене в среднем занимает  1.30 , если на олене , и 2.00 - 2.30 если пешком.</p>
 <style>
     .navigator-wrapper {
-         
         margin: 1.5rem 0;
     }
     .navigator-h2, .navigator-h3 {
-         
         font-weight: bold;
         border-bottom: 2px solid #555;
         padding-bottom: 8px;
@@ -756,18 +754,18 @@
     }
     .waypoint-entry {
         position: relative;
-        background-color: #383838;  
+        background-color: #383838;
         color: #f0f0f0;
         padding: 12px 15px;
         border-radius: 4px;
         margin-top: 10px;
-        padding-right: 95px;  
+        padding-right: 95px;
     }
     .waypoint-entry code {
         font-family: 'Courier New', Courier, monospace;
         font-size: 1em;
         word-break: break-all;
-        color: #a6e22e;  
+        color: #a6e22e;
     }
     .copy-btn {
         position: absolute;
@@ -785,250 +783,229 @@
     }
     .copy-btn:hover { background-color: #0056b3; }
     .copy-btn.copied { background-color: #28a745; }
-
-    .path-choice {
-        text-align: center;
-        margin: 20px 0;
-    }
-    .choice-btn {
-        background-color: #5865f2;
-        color: white;
-        border: none;
-        padding: 12px 25px;
-        font-size: 1.1em;
-        border-radius: 5px;
-        cursor: pointer;
-        margin: 5px;
-        transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .choice-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    }
-    .choice-btn.active {
-        background: linear-gradient(45deg, #28a745, #24c96c);
-        box-shadow: 0 0 15px rgba(40, 167, 69, 0.7);
-    }
-    .path-content {
-        display: none;
-        padding: 20px;
-        margin-top: 20px;
-        border: 1px dashed #555;
-        border-radius: 5px;
-    }
-    .path-content.active { display: block; }
 </style>
 
 <div class="navigator-wrapper">
-    <div class="navigator-h2">Навигатор по туннелям</div>
+    <div class="navigator-h2">Полный путь к Пещере Тобиаса</div>
     <p class="navigator-description">
-        Это интерактивный путеводитель по системе транслокаторов. Сначала идет общий путь до развилки. Затем выберите нужное направление, чтобы увидеть дальнейший маршрут.
-        <br><strong>Как использовать:</strong> Нажмите кнопку "Копировать", затем вставьте ее в чат игры (Ctrl+V).
+        Полный список транслокаторов для пути от спавна до Пещеры Тобиаса.
+        <br><strong>Как использовать:</strong> Нажмите кнопку "Копировать", затем вставьте команду в чат игры (Ctrl+V).
     </p>
 
-    <section id="common-path">
-        <div class="navigator-h3">Часть 1: Путь от спавна до развилки</div>
-        <p>Этот маршрут общий для всех направлений. Следуйте по транслокаторам от 1 до 38.</p>
+    <div class="navigator-h3">Часть 1: Путь до основной развилки</div>
 
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 1 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 3967 110 14189 false #FF0000 Транслокатор к развилке (1/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 2 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 9258 110 20163 false #FF0000 Транслокатор к развилке (2/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 3 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 8363 110 26616 false #FF0000 Транслокатор к развилке (3/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 4 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 6725 110 31653 false #FF0000 Транслокатор к развилке (4/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 5 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 11605 110 38456 false #FF0000 Транслокатор к развилке (5/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 6 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 17120 110 38187 false #FF0000 Транслокатор к развилке (6/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 7 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 18055 110 42587 false #FF0000 Транслокатор к развилке (7/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 8 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 24809 110 44907 false #FF0000 Транслокатор к развилке (8/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 9 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 22485 110 47864 false #FF0000 Транслокатор к развилке (9/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 10 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 17156 110 51311 false #FF0000 Транслокатор к развилке (10/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 11 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 9944 110 56714 false #FF0000 Транслокатор к развилке (11/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 12 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 7607 110 60542 false #FF0000 Транслокатор к развилке (12/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 13 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 13293 110 66880 false #FF0000 Транслокатор к развилке (13/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 14 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 16879 110 69548 false #FF0000 Транслокатор к развилке (14/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 15 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 23042 110 71140 false #FF0000 Транслокатор к развилке (15/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 16 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 22376 110 74391 false #FF0000 Транслокатор к развилке (16/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 17 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 26032 110 79083 false #FF0000 Транслокатор к развилке (17/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 18 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 23975 110 80624 false #FF0000 Транслокатор к развилке (18/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 19 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 31445 110 83058 false #FF0000 Транслокатор к развилке (19/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 20 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 30462 110 85992 false #FF0000 Транслокатор к развилке (20/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 21 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 36406 110 85052 false #FF0000 Транслокатор к развилке (21/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 22 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 43525 110 88342 false #FF0000 Транслокатор к развилке (22/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 23 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 48296 110 87083 false #FF0000 Транслокатор к развилке (23/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 24 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 47459 110 92820 false #FF0000 Транслокатор к развилке (24/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 25 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 54276 110 93895 false #FF0000 Транслокатор к развилке (25/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 26 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 61214 110 94087 false #FF0000 Транслокатор к развилке (26/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 27 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 60215 110 98880 false #FF0000 Транслокатор к развилке (27/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 28 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 66829 110 100591 false #FF0000 Транслокатор к развилке (28/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 29 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 73596 110 105007 false #FF0000 Транслокатор к развилке (29/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 30 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 76897 110 109197 false #FF0000 Транслокатор к развилке (30/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 31 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 88063 110 116829 false #FF0000 Транслокатор к развилке (31/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 32 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 91080 110 118019 false #FF0000 Транслокатор к развилке (32/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 33 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 95674 110 125852 false #FF0000 Транслокатор к развилке (33/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 34 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 101250 110 127359 false #FF0000 Транслокатор к развилке (34/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 35 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 105140 110 134369 false #FF0000 Транслокатор к развилке (35/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 36 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 112351 110 140887 false #FF0000 Транслокатор к развилке (36/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 37 / 38</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 118799 110 148065 false #FF0000 Транслокатор к развилке (37/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-        <div class="waypoint-group">
-            <div class="navigator-h3">Транслокатор 38 / 38 (Выход на развилку)</div>
-            <div class="waypoint-entry"><code>/waypoint addati spiral 127455 110 155253 false #FF0000 Транслокатор к развилке (38/38)</code><button class="copy-btn">Копировать</button></div>
-        </div>
-    </section>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 1 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 3967 110 14189 false #FF0000 Транслокатор к развилке (1/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 2 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 9258 110 20163 false #FF0000 Транслокатор к развилке (2/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 3 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 8363 110 26616 false #FF0000 Транслокатор к развилке (3/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 4 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 6725 110 31653 false #FF0000 Транслокатор к развилке (4/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 5 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 11605 110 38456 false #FF0000 Транслокатор к развилке (5/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 6 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 17120 110 38187 false #FF0000 Транслокатор к развилке (6/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 7 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 18055 110 42587 false #FF0000 Транслокатор к развилке (7/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 8 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 24809 110 44907 false #FF0000 Транслокатор к развилке (8/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 9 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 22485 110 47864 false #FF0000 Транслокатор к развилке (9/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 10 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 17156 110 51311 false #FF0000 Транслокатор к развилке (10/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 11 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 9944 110 56714 false #FF0000 Транслокатор к развилке (11/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 12 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 7607 110 60542 false #FF0000 Транслокатор к развилке (12/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 13 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 13293 110 66880 false #FF0000 Транслокатор к развилке (13/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 14 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 16879 110 69548 false #FF0000 Транслокатор к развилке (14/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 15 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 23042 110 71140 false #FF0000 Транслокатор к развилке (15/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 16 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 22376 110 74391 false #FF0000 Транслокатор к развилке (16/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 17 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 26032 110 79083 false #FF0000 Транслокатор к развилке (17/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 18 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 23975 110 80624 false #FF0000 Транслокатор к развилке (18/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 19 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 31445 110 83058 false #FF0000 Транслокатор к развилке (19/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 20 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 30462 110 85992 false #FF0000 Транслокатор к развилке (20/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 21 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 36406 110 85052 false #FF0000 Транслокатор к развилке (21/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 22 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 43525 110 88342 false #FF0000 Транслокатор к развилке (22/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 23 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 48296 110 87083 false #FF0000 Транслокатор к развилке (23/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 24 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 47459 110 92820 false #FF0000 Транслокатор к развилке (24/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 25 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 54276 110 93895 false #FF0000 Транслокатор к развилке (25/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 26 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 61214 110 94087 false #FF0000 Транслокатор к развилке (26/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 27 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 60215 110 98880 false #FF0000 Транслокатор к развилке (27/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 28 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 66829 110 100591 false #FF0000 Транслокатор к развилке (28/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 29 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 73596 110 105007 false #FF0000 Транслокатор к развилке (29/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 30 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 76897 110 109197 false #FF0000 Транслокатор к развилке (30/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 31 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 88063 110 116829 false #FF0000 Транслокатор к развилке (31/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 32 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 91080 110 118019 false #FF0000 Транслокатор к развилке (32/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 33 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 95674 110 125852 false #FF0000 Транслокатор к развилке (33/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 34 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 101250 110 127359 false #FF0000 Транслокатор к развилке (34/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 35 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 105140 110 134369 false #FF0000 Транслокатор к развилке (35/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 36 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 112351 110 140887 false #FF0000 Транслокатор к развилке (36/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 37 / 38</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 118799 110 148065 false #FF0000 Транслокатор к развилке (37/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">Транслокатор 38 / 38 (Выход на развилку)</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 127455 110 155253 false #FF0000 Транслокатор к развилке (38/38)</code><button class="copy-btn">Копировать</button></div>
+    </div>
 
-    <section id="path-selector">
-        <div class="navigator-h2">Часть 2: Развилка</div>
-        <div class="navigator-description">Вы достигли основной развилки. Теперь выберите, куда вы хотите отправиться дальше.</div>
-        <div class="path-choice">
-            <button id="showTobiasPathBtn" class="choice-btn">К пещере Тобиаса</button>
-            <button id="showArchivePathBtn" class="choice-btn">К Резонансным Архивам</button>
-        </div>
-    </section>
+    <div class="navigator-h3" style="margin-top: 3rem; border-top: 2px solid #555; padding-top: 2rem;">Часть 2: Путь от развилки к Биому</div>
 
-    <div id="tobiasPath" class="path-content">
-        <div class="navigator-h3">Маршрут к пещере Тобиаса</div>
-        <p>Следуйте по этим транслокаторам, чтобы добраться до биома, затем до деревни Надия и пещеры.</p>
-        </div>
-    
-    <div id="archivePath" class="path-content">
-        <div class="navigator-h3">Маршрут к Резонансным Архивам</div>
-        <p>Этот путь приведет вас к Резонансным Архивам.</p>
-        </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">ТЛ 39: К Биому (1/7)</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 134879 110 159119 false #FF0000 Транслокатор к Биому (1/7)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">ТЛ 40: К Биому (2/7)</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 130445 110 164066 false #FF0000 Транслокатор к Биому (2/7)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">ТЛ 41: К Биому (3/7)</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 135131 110 169948 false #FF0000 Транслокатор к Биому (3/7)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">ТЛ 42: К Биому (4/7)</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 127829 110 172568 false #FF0000 Транслокатор к Биому (4/7)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">ТЛ 43: К Биому (5/7)</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 126800 110 179130 false #FF0000 Транслокатор к Биому (5/7)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">ТЛ 44: К Биому (6/7)</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 125906 110 183771 false #FF0000 Транслокатор к Биому (6/7)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">ТЛ 45: К Биому (7/7)</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 119605 110 182913 false #FF0000 Транслокатор к Биому (7/7)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+
+    <div class="navigator-h3" style="margin-top: 3rem; border-top: 2px solid #555; padding-top: 2rem;">Часть 3: Путь от Биома к деревне Надия</div>
+
+    <div class="waypoint-group">
+        <div class="navigator-h3">ТЛ 46: К Деревне (1/2)</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 123809 110 189540 false #FF0000 Транслокатор к Деревне (1/2)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+    <div class="waypoint-group">
+        <div class="navigator-h3">ТЛ 47: К Деревне (2/2)</div>
+        <div class="waypoint-entry"><code>/waypoint addati spiral 129566 110 187852 false #FF0000 Транслокатор к Деревне (2/2)</code><button class="copy-btn">Копировать</button></div>
+    </div>
+
+    <div class="navigator-h3" style="margin-top: 3rem; border-top: 2px solid #555; padding-top: 2rem;">Часть 4: Финальный этап до Пещеры Тобиаса</div>
+    <div class="waypoint-group">
+         <div class="navigator-h3">Пещера Тобиаса</div>
+         <p class="navigator-description">От точки прибытия в деревню Надия идите пешком на северо-запад по дороге.</p>
+        <div class="waypoint-entry"><code>/waypoint addati trader 126095 110 193777 false #FF8000 Tobias Cave</code><button class="copy-btn">Копировать</button></div>
+    </div>
 
 </div>
 
 <script>
     (function() {
-        if (document.getElementById('navigator-initialized')) return;
+        if (document.getElementById('navigator-copier-initialized')) return;
 
-        const tobiasBtn = document.getElementById('showTobiasPathBtn');
-        const archiveBtn = document.getElementById('showArchivePathBtn');
-        const tobiasPath = document.getElementById('tobiasPath');
-        const archivePath = document.getElementById('archivePath');
-        
-        const choiceButtons = [tobiasBtn, archiveBtn];
-        const contentPanels = [tobiasPath, archivePath];
-
-        function handlePathChoice(selectedBtn, selectedPath) {
-            choiceButtons.forEach(btn => btn.classList.remove('active'));
-            contentPanels.forEach(panel => panel.classList.remove('active'));
-            selectedBtn.classList.add('active');
-            selectedPath.classList.add('active');
-        }
-
-        tobiasBtn.addEventListener('click', () => handlePathChoice(tobiasBtn, tobiasPath));
-        archiveBtn.addEventListener('click', () => handlePathChoice(archiveBtn, archivePath));
-        
         const allCopyButtons = document.querySelectorAll('.copy-btn');
         allCopyButtons.forEach(button => {
+            if (button.dataset.listenerAttached) return;
+
             button.addEventListener('click', (e) => {
                 const waypointEntry = e.currentTarget.parentElement;
                 const codeElement = waypointEntry.querySelector('code');
@@ -1043,13 +1020,16 @@
                     }, 2000);
                 });
             });
+            button.dataset.listenerAttached = 'true';
         });
 
         const wrapper = document.querySelector('.navigator-wrapper');
-        const hiddenDiv = document.createElement('div');
-        hiddenDiv.id = 'navigator-initialized';
-        hiddenDiv.style.display = 'none';
-        wrapper.appendChild(hiddenDiv);
+        if (wrapper && !document.getElementById('navigator-copier-initialized')) {
+            const hiddenDiv = document.createElement('div');
+            hiddenDiv.id = 'navigator-copier-initialized';
+            hiddenDiv.style.display = 'none';
+            wrapper.appendChild(hiddenDiv);
+        }
     })();
 </script>
 
