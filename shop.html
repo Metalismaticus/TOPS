@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Магазин — TOPS</title>
+  <style>
+    body { margin: 0; background: #111; color: #fff; font-family: sans-serif; padding: 20px; }
+    .shop-wrap{max-width:800px;margin:20px auto;padding:20px;background:rgba(255,255,255,.05);border-radius:8px;}
+    .shop-wrap h1{font-size:2em;margin-bottom:.5em;text-align:center;}
+
+    /* селекты */
+    .shop-select{margin-bottom:1em;}
+    .shop-select label{display:block;margin-bottom:.25em;font-weight:bold;}
+    .shop-wrap select{
+      width:100%;padding:.5em;font-size:1em;color:#fff;appearance:none;
+      background:rgba(255,255,255,.1);
+      border:1px solid rgba(255,255,255,.4);border-radius:4px;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath fill='white' d='M6 7 0 0h12z'/%3E%3C/svg%3E");
+      background-repeat:no-repeat;background-position:right .5em center;background-size:.65em auto;
+      cursor:pointer;
+    }
+    .shop-wrap select option{background:#222;color:#fff;}
+
+    /* карточка товара */
+    #shop-card{display:none;width:300px;margin:20px auto;overflow:hidden;
+      background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.3);border-radius:8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    #shop-card .img{padding:1.5em;text-align:center;background:rgba(255,255,255,.02);}
+    #shop-card img{max-width:100%;height:auto;border-radius:4px;}
+    #shop-card .grid{display:grid;grid-template-columns:1fr 1fr;}
+    #shop-card .cell{padding:.75em 1em;border-top:1px solid rgba(255,255,255,.2);}
+    #shop-card .cell:nth-child(odd){border-right:1px solid rgba(255,255,255,.2);}
+    #shop-card .cell span:first-child{font-weight:bold;display:block;margin-bottom:4px;font-size:.9em;opacity: 0.8;}
+    #shop-card .cell span:last-child{font-size:1.1em;}
+
+
+    /* кнопки */
+    .shop-buttons{text-align:center; margin-top: 20px;}
+    #shop-order, #shop-back, #shop-submit {
+      display:none;
+      margin: 0 10px;
+      padding:.75em 1.5em;
+      border:0;
+      border-radius:4px;
+      cursor:pointer;
+      color:#fff;
+      font-size: 1em;
+      transition: background-color 0.2s ease;
+    }
+    #shop-order{background:rgba(0,128,255,.8);}
+    #shop-order:hover{background:rgba(0,128,255,1);}
+    #shop-back {background:rgba(255,98,0,.8);}
+    #shop-back:hover{background:rgba(255,98,0,1);}
+    #shop-submit{background:rgba(0,200,83,.8);}
+    #shop-submit:hover{background:rgba(0,200,83,1);}
+     #shop-submit:disabled {
+        background: rgba(0,200,83,0.4);
+        cursor: not-allowed;
+     }
+
+
+    /* форма */
+    #shop-form{display:none;margin-top:1.5em;padding:20px;background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.3);border-radius:8px;}
+    #shop-form h3 { margin-top: 1.5em; margin-bottom: 1em; border-bottom: 1px solid rgba(255,255,255,.2); padding-bottom: 0.5em; }
+    #shop-form .field{margin-bottom:.75em;}
+    #shop-form label { display: block; margin-bottom: .25em; font-weight: bold; opacity: 0.9; }
+    #shop-form input[type=text],#shop-form input[type=number]{
+      width:100%;padding:.5em;background:rgba(255,255,255,.1);
+      border:1px solid rgba(255,255,255,.4);border-radius:4px;color:#fff;box-sizing: border-box;
+    }
+    #shop-form .inline{display:flex;gap:1em;}
+    #shop-form .inline .field { flex: 1; } /* Растягиваем поля в инлайн-блоке */
+
+    /* строка позиции */
+    .shop-items .item{display:flex;align-items:center;padding:.75em 0;border-bottom:1px solid rgba(255,255,255,.1);}
+    .item .name{flex:1; font-size: 1.1em;}
+    .item .price{width:7em;text-align:right;margin-right:.5em; font-size: 1em;}
+    /* поле quantity — 4 цифры, без спин-кнопок */
+    .item input.qty{
+      width:6ch;min-width:6ch;max-width:6ch;
+      text-align:center;margin:0 .5em;
+      padding: .4em;
+      background: rgba(255,255,255, 0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 4px;
+      color: #fff;
+      -moz-appearance:textfield;
+    }
+    .item input.qty::-webkit-inner-spin-button,
+    .item input.qty::-webkit-outer-spin-button{
+      -webkit-appearance:none;margin:0;
+    }
+    .item .remove{cursor:pointer;color:#f66; font-size: 1.5em; padding: 0 5px;}
+    .item .remove:hover { color: #ff0000; }
+
+    #shop-total{text-align:right;font-size:1.3em;margin-top:1.5em; font-weight: bold;}
+    #shop-total span{margin-left: 10px;}
+
+    /* Сообщения */
+    #shop-message {
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 4px;
+        display: none;
+        text-align: center;
+        font-weight: bold;
+    }
+    #shop-message.success { background: rgba(0, 200, 83, 0.2); color: #00ff00; border: 1px solid rgba(0, 200, 83, 0.5); }
+    #shop-message.error { background: rgba(255, 0, 0, 0.2); color: #ff0000; border: 1px solid rgba(255, 0, 0, 0.5); }
+
+
+    /* Адаптивность */
+    @media (max-width: 600px) {
+        .shop-wrap { padding: 10px; }
+        #shop-card { width: 100%; }
+        #shop-card .grid { grid-template-columns: 1fr; }
+        #shop-card .cell:nth-child(odd){ border-right: none; }
+        #shop-form .inline { flex-direction: column; gap: 0; }
+        .item input.qty { width: 8ch; min-width: 8ch; max-width: 8ch; }
+    }
+
+
+  </style>
+
+  <script type="module">
+    // --- Импорты Firebase ---
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+    import {
+      getFirestore, collection, getDocs, addDoc, Timestamp
+    } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+    // --- Конфигурация Firebase ---
+    const firebaseConfig = {
+        apiKey: "AIzaSyBEBi2mOsrnrKgTatQaQZTVbLQ_ygEWGao",
+        authDomain: "market-tops.firebaseapp.com",
+        projectId: "market-tops",
+        storageBucket: "market-tops.appspot.com",
+        messagingSenderId: "903114085984",
+        appId: "1:903114085984:web:ad97ba9c43e8a39a6e1505"
+    };
+
+    // --- Инициализация Firebase ---
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // --- Константы и переменные ---
+    const GOODS_COLLECTION = 'goods';
+    const ORDERS_COLLECTION = 'orders';
+    const DEFAULT_IMG = 'https://wiki.vintagestory.at/images/thumb/0/04/Conditionalblock.png/200px-Conditionalblock.png'; // Картинка по умолчанию
+    let goodsData = []; // Массив товаров из Firestore
+
+    // --- Ссылки на DOM элементы ---
+    const $ = id => document.getElementById(id);
+    const selBlock = $('shop-select-block');
+    const selMain = $('shop-item');
+    const btnBack = $('shop-back');
+    const card = $('shop-card');
+    const cardImg = $('shop-img');
+    const cardGrid = card.querySelector('.grid');
+    const btnOrder = $('shop-order');
+    const form = $('shop-form');
+    const selAdd = $('shop-add');
+    const listEl = $('shop-items');
+    const sumEl = $('shop-sum');
+    const nickInput = $('shop-nick');
+    const dcInput = $('shop-dc'); // Только Discord
+    const modeRad = [...document.getElementsByName('shop-mode')];
+    const submitBtn = $('shop-submit');
+    const messageDiv = $('shop-message');
+
+
+    let order = []; // Список товаров в текущем заказе
+
+    // --- Вспомогательные функции ---
+
+    // Создание DOM элемента из HTML строки
+    function _html(s) {
+      const t = document.createElement('template');
+      t.innerHTML = s.trim();
+      return t.content.firstChild;
+    }
+
+    // Отображение сообщения
+    function showMessage(msg, type = 'success') {
+        messageDiv.textContent = msg;
+        messageDiv.className = `shop-message ${type}`;
+        messageDiv.style.display = 'block';
+        // Автоматически скрывать через несколько секунд
+        setTimeout(() => {
+            messageDiv.style.display = 'none';
+        }, 5000); // Скрыть через 5 секунд
+    }
+
+
+    // Загрузка данных о товарах из Firestore
+    async function loadGoodsData() {
+      console.log("loadGoodsData: Загрузка данных о товарах из Firestore...");
+      try {
+        const goodsCollectionRef = collection(db, GOODS_COLLECTION);
+        const snap = await getDocs(goodsCollectionRef);
+        goodsData = snap.docs.map(d => {
+          const data = d.data();
+          // Преобразуем данные из Firestore в нужный формат
+          return {
+            id: d.id, // Сохраняем ID документа Firestore
+            img: data.img || '',
+            name: data.name || 'Без имени',
+            buy: Number(data.buy) || 0,
+            available: Number(data.available) || 0,
+            sell: Number(data.sell) || 0,
+            need: Number(data.need) || 0
+          };
+        }).filter(g => g.name); // Фильтруем на случай пустых имен
+
+        console.log("loadGoodsData: Данные о товарах успешно загружены:", goodsData);
+
+        // Заполняем селекты после загрузки данных
+        populateSelectors();
+
+      } catch (err) {
+        console.error("loadGoodsData: Ошибка загрузки данных о товарах из Firestore:", err);
+        showMessage("Не удалось загрузить список товаров. Магазин может работать некорректно.", 'error');
+        goodsData = []; // Очищаем данные в случае ошибки
+      }
+    }
+
+    // Заполнение выпадающих списков товаров
+    function populateSelectors() {
+         // Очищаем текущие опции, кроме первой ("— выбрать —")
+         selMain.innerHTML = '<option value="">— выбрать —</option>';
+         selAdd.innerHTML = '<option value="">— выбрать —</option>';
+
+         goodsData.forEach((g, i) => {
+             // Используем name товара как value, т.к. он отображается и уникален в вашем интерфейсе админки
+             selMain.add(new Option(g.name, g.name));
+             selAdd.add(new Option(g.name, g.name));
+         });
+         console.log("Selectors populated with goods data.");
+    }
+
+    // Проверка состояния кнопки отправки заказа
+    function checkSubmitButtonState() {
+        // Добавляем проверки на существование элементов и их value
+        const nicknameFilled = nickInput && nickInput.value !== null && nickInput.value !== undefined && nickInput.value.trim() !== '';
+        const discordFilled = dcInput && dcInput.value !== null && dcInput.value !== undefined && dcInput.value.trim() !== '';
+        const hasItems = order.length > 0;
+
+        if (submitBtn) {
+            // Кнопка активна, если есть товары в заказе И заполнен никнейм И заполнен Discord логин
+            submitBtn.disabled = !(hasItems && nicknameFilled && discordFilled);
+        }
+    }
+
+
+    // Обновление отображения списка товаров в форме заказа
+    function redraw() {
+      listEl.innerHTML = '';
+      let sum = 0;
+      const mode = modeRad.find(r => r.checked).value; // 'buy' или 'sell'
+
+      if (order.length === 0) {
+           if(form) form.style.display = 'none';
+           if(selBlock) selBlock.style.display = 'block';
+           if(btnBack) btnBack.style.display = 'none';
+           if(card) card.style.display = 'none'; // Скрываем карточку, если она была видна
+           if(btnOrder) btnOrder.style.display = 'none'; // Скрываем кнопку Оформить заказ
+           if(sumEl) sumEl.textContent = (0).toFixed(0); // Сбрасываем сумму
+           checkSubmitButtonState(); // Обновляем состояние кнопки
+           return; // Выходим, если корзина пуста
+      }
+
+
+      order.forEach((o, i) => {
+        // Находим товар по имени (value в селекте)
+        const g = goodsData.find(item => item.name === o.productName);
+        if (!g) return; // Пропускаем, если товар не найден (например, удален из БД)
+
+        const price = mode === 'buy' ? g.sell : g.buy; // Если режим "Я куплю", используем цену продажи (SELL), иначе цену покупки (BUY)
+        const itemTotal = price * o.quantity;
+        sum += itemTotal;
+
+        const row = _html(`<div class="item">
+          <span class="name">${g.name}</span>
+          <span class="price">${price.toFixed(0)} ₽</span>
+          <input class="qty" type="number" min="1" value="${o.quantity}">
+          <span class="remove">×</span></div>`);
+
+        // Обработчик изменения количества
+        const qtyInput = row.querySelector('.qty');
+        if (qtyInput) { // Добавлена проверка на существование элемента
+            qtyInput.oninput = (e) => {
+              // Обновляем количество в массиве order
+              o.quantity = Math.max(1, +e.target.value || 1);
+              redraw(); // Перерисовываем список для обновления суммы и кнопки
+            };
+        }
+
+
+        // Обработчик удаления позиции
+        const removeBtn = row.querySelector('.remove');
+        if (removeBtn) { // Добавлена проверка на существование элемента
+            removeBtn.onclick = () => {
+              order.splice(i, 1); // Удаляем элемент из массива order
+              redraw(); // Перерисовываем список и обновляем кнопку
+            };
+        }
+
+
+        if(listEl) listEl.append(row); // Добавлена проверка на существование listEl
+      });
+
+      if(sumEl) sumEl.textContent = sum.toFixed(0); // Отображаем общую сумму без десятичных знаков
+      checkSubmitButtonState(); // Обновляем состояние кнопки после перерисовки
+    }
+
+
+    // --- Инициализация и обработчики событий ---
+
+    document.addEventListener('DOMContentLoaded', async () => {
+        await loadGoodsData(); // Загружаем товары при загрузке страницы
+        // После загрузки данных, обработчики селектов готовы к работе
+
+        // Обработчик выбора товара в главном селекте
+        if (selMain) { // Проверка на существование элемента
+            selMain.onchange = () => {
+                const productName = selMain ? selMain.value : '';
+                if (!productName) {
+                    if(card) card.style.display = 'none';
+                    if(btnOrder) btnOrder.style.display = 'none';
+                    return;
+                }
+                const g = goodsData.find(item => item.name === productName);
+                if (g) {
+                    if(cardImg) cardImg.src = g.img || DEFAULT_IMG;
+                    if(cardImg) cardImg.alt = g.name;
+                    if(cardGrid) {
+                         cardGrid.innerHTML = [
+                            {l:'Мы покупаем (у игрока)',v:g.buy},
+                            {l:'Мы продаем (игроку)',v:g.sell},
+                            {l:'Доступно на складе',v:g.available},
+                            {l:'Нужно докупить',v:g.need}
+                         ].map(x => `<div class="cell"><span>${x.l}</span><br><span>${x.v}</span></div>`).join('');
+                    }
+                    if(card) card.style.display = 'block';
+                    if(btnOrder) btnOrder.style.display = 'inline-block';
+                } else {
+                     if(card) card.style.display = 'none';
+                     if(btnOrder) btnOrder.style.display = 'none';
+                     console.warn(`Товар "${productName}" не найден в загруженных данных.`);
+                }
+            };
+        }
+
+
+        // Обработчик кнопки "Оформить заказ" (переход к форме)
+        if (btnOrder) { // Проверка на существование элемента
+            btnOrder.onclick = () => {
+                const productName = selMain ? selMain.value : '';
+                if (productName && !order.some(o => o.productName === productName)) {
+                     // Добавляем товар в заказ, если он еще не там
+                     order.push({ productName: productName, quantity: 1 });
+                }
+                redraw(); // Рисуем список товаров в форме и обновляем кнопку
+                if(form) form.style.display = 'block';
+                if(card) card.style.display = 'none';
+                if(btnOrder) btnOrder.style.display = 'none';
+                if(selBlock) selBlock.style.display = 'none';
+                if(btnBack) btnBack.style.display = 'inline-block';
+                if(messageDiv) messageDiv.style.display = 'none'; // Скрываем сообщения
+
+                checkSubmitButtonState(); // Обновляем состояние кнопки при переходе к форме
+            };
+        }
+
+
+        // Обработчик кнопки "Назад к выбору товара"
+        if (btnBack) { // Проверка на существование элемента
+            btnBack.onclick = () => {
+                if(form) form.style.display = 'none';
+                if(selBlock) selBlock.style.display = 'block';
+                if(btnBack) btnBack.style.display = 'none';
+                if(selMain) selMain.value = ''; // Сбрасываем выбор в основном селекте
+                if(card) card.style.display = 'none';
+                if(btnOrder) btnOrder.style.display = 'none';
+                if(messageDiv) messageDiv.style.display = 'none'; // Скрываем сообщения
+                order = []; // Очищаем корзину при возврате
+                redraw(); // Перерисовываем, чтобы очистить список и обновить кнопку
+            };
+        }
+
+        // Обработчик добавления товара через селект в форме
+        if (selAdd) { // Проверка на существование элемента
+            selAdd.onchange = () => {
+                const productName = selAdd.value;
+                if (productName && !order.some(o => o.productName === productName)) {
+                    order.push({ productName: productName, quantity: 1 });
+                    redraw(); // Перерисовываем список товаров и обновляем кнопку
+                }
+                selAdd.value = ''; // Сбрасываем селект добавления товара
+            };
+        }
+
+        // Обработчик смены режима (Купить/Продать)
+        modeRad.forEach(r => {
+            if (r) r.onchange = redraw; // Перерисовываем при смене режима для обновления цен и кнопки
+        });
+
+
+        // Обработчики ввода никнейма и Discord для активации кнопки отправки
+         if(nickInput) nickInput.oninput = checkSubmitButtonState;
+         if(dcInput) dcInput.oninput = checkSubmitButtonState;
+
+
+        // Обработчик кнопки "Оформить заказ" (отправка данных в Firestore)
+        if (submitBtn) { // Проверка на существование элемента
+            submitBtn.onclick = async () => {
+                submitBtn.disabled = true; // Блокируем кнопку отправки
+                if(messageDiv) messageDiv.style.display = 'none'; // Скрываем предыдущие сообщения
+
+                // Добавлены явные проверки на null/undefined для value
+                const nickname = (nickInput && nickInput.value !== null && nickInput.value !== undefined) ? nickInput.value.trim() : '';
+                const discordLogin = (dcInput && dcInput.value !== null && dcInput.value !== undefined) ? dcInput.value.trim() : '';
+
+                console.log('submitBtn.onclick: nickname =', nickname, 'discordLogin =', discordLogin); // Лог для отладки
+
+
+                // Определяем категорию для админки ('покупает' - игрок покупает у нас, 'продаёт' - игрок продает нам)
+                const modeRadioChecked = modeRad.find(r => r.checked);
+                const category = modeRadioChecked ? (modeRadioChecked.value === 'buy' ? 'покупает' : 'продаёт') : '';
+
+
+                // Проверка заполнения обязательных полей
+                if (!nickname || !discordLogin) {
+                     showMessage("Пожалуйста, введите ваш никнейм в игре и логин Discord.", 'error');
+                     submitBtn.disabled = false;
+                     return;
+                }
+
+                if (order.length === 0) {
+                     showMessage("Ваш заказ пуст. Пожалуйста, выберите хотя бы один товар.", 'error');
+                     submitBtn.disabled = false;
+                     return;
+                }
+
+                // Подготовка данных для Firestore
+                const orderItems = order.map(item => {
+                     const product = goodsData.find(g => g.name === item.productName);
+                     // Используем соответствующие цены из goodsData
+                     const price = category === 'покупает' ? product?.sell : product?.buy; // Цена за 1 шт.
+                     return {
+                          product: item.productName,
+                          quantity: item.quantity,
+                          pricePerUnit: price // Сохраняем цену за единицу на момент оформления
+                     };
+                });
+
+                const totalCost = orderItems.reduce((sum, item) => {
+                     return sum + item.quantity * (item.pricePerUnit || 0);
+                }, 0);
+
+
+                const orderData = {
+                    date: Timestamp.fromDate(new Date()), // Текущая дата и время в формате Firestore
+                    nickname: nickname,
+                    discordLogin: discordLogin,
+                    category: category, // 'покупает' или 'продаёт'
+                    items: orderItems, // Массив товаров в заказе
+                    totalCost: totalCost,
+                    status: 'В обработке', // Начальный статус
+                };
+
+                console.log("Attempting to submit order to Firestore:", orderData);
+
+                try {
+                    const docRef = await addDoc(collection(db, ORDERS_COLLECTION), orderData);
+                    console.log("Order successfully submitted with ID:", docRef.id);
+                    showMessage("Ваш заказ успешно отправлен! В скором времени с вами свяжется администратор.", 'success');
+
+                    // Очищаем форму после успешной отправки
+                    order = []; // Очищаем корзину
+                    redraw(); // Перерисовываем, чтобы очистить список и обновить кнопку
+                    if(nickInput) nickInput.value = '';
+                    if(dcInput) dcInput.value = '';
+                    // submitBtn.disabled = true; // Состояние кнопки обновится в redraw
+
+                } catch (e) {
+                    console.error("Error submitting order:", e);
+                    showMessage(`Произошла ошибка при оформлении заказа. Пожалуйста, попробуйте еще раз или свяжитесь с администрацией. Ошибка: ${e.message}`, 'error');
+                    submitBtn.disabled = false; // Разблокируем кнопку, чтобы можно было попробовать снова
+                }
+            };
+        }
+
+
+         // Изначально кнопка отправки заблокирована
+         checkSubmitButtonState();
+
+
+    }); // Конец DOMContentLoaded
+
+  </script>
+
+</body>
+</html>
