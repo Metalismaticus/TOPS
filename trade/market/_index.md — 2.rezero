@@ -1,0 +1,284 @@
+---
+title: "Магазин на диване"
+layout: single
+showHero: true
+heroStyle: "background"
+showAuthor: false # На всякий случай, если автор тоже где-то показывается
+showDate: false
+showWordCount: false
+showReadingTime: false
+layoutBackgroundHeaderSpace: false
+---
+<!-- ===== СТИЛИ (в <head> или в начале market.md) ===== -->
+<style>
+  .container {
+    max-width: 800px; margin: 0 auto; padding: 20px;
+    color: white; font-family: sans-serif;
+  }
+  h1 { font-size: 2em; margin-bottom: .5em; }
+
+  /* селект */
+  .select-wrapper { margin-bottom: 1em; }
+  .select-wrapper label { display: block; margin-bottom: .25em; }
+  select {
+    width: 100%; padding: .5em; font-size:1em;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 4px; color: white; appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%227%22%20viewBox%3D%220%200%2012%207%22 xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 7L0 0h12L6 7z' fill='white'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right .5em center; background-size: .65em auto;
+  }
+  select option { background: white; color: black; }
+
+  /* карточка */
+  #card {
+    display: none; background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.3); border-radius: 8px;
+    width: 300px; margin-top: 1em; overflow:hidden;
+  }
+  #card .card-image {
+    background: rgba(255,255,255,0.02); padding:1.5em; text-align:center;
+  }
+  #card .card-image img {
+    max-width:100%; height:auto;
+  }
+  #card .card-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+  }
+  #card .card-grid .cell {
+    padding:.75em 1em; border-top:1px solid rgba(255,255,255,0.2);
+  }
+  #card .card-grid .cell:nth-child(odd) {
+    border-right:1px solid rgba(255,255,255,0.2);
+  }
+  #card .cell span:first-child {
+    font-weight: bold;
+  }
+
+  /* кнопка оформления */
+  #order-btn {
+    display:none; margin-top:1em; padding:.75em 1.5em;
+    background: rgba(0,128,255,0.8); border:none; border-radius:4px;
+    color:white; cursor:pointer;
+  }
+  #order-btn:hover {
+    background: rgba(0,128,255,1);
+  }
+
+  /* форма заказа */
+  #order-form {
+    display:none; margin-top:1.5em;
+    background: rgba(255,255,255,0.08); padding:1em;
+    border:1px solid rgba(255,255,255,0.3); border-radius:8px;
+  }
+  #order-form .field { margin-bottom:.75em; }
+  #order-form input[type="text"],
+  #order-form input[type="number"] {
+    width:100%; padding:.5em; border:1px solid rgba(255,255,255,0.4);
+    border-radius:4px; background:rgba(255,255,255,0.1); color:white;
+  }
+  #order-form .inline { display:flex; gap:1em; }
+  #order-form .items-list .item {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:.5em 0; border-bottom:1px solid rgba(255,255,255,0.2);
+  }
+  #order-form .item input[type="number"] {
+    width:4em; margin-left:1em;
+  }
+  #order-form .remove {
+    margin-left:.5em; cursor:pointer; color:#f66;
+  }
+  #order-form #total { text-align:right; font-size:1.1em; margin-top:1em; }
+  #submit-order {
+    margin-top:1em; padding:.75em; width:100%;
+    background: rgba(0,200,83,0.8); border:none; border-radius:4px;
+    color:white; cursor:pointer;
+  }
+  #submit-order:hover { background: rgba(0,200,83,1); }
+</style>
+
+<!-- =============== РАЗМЕТКА =============== -->
+<div class="container">
+  <h1>Актуальные цены</h1>
+
+  <!-- выбор товара -->
+  <div class="select-wrapper">
+    <label for="item-select">Выберите товар</label>
+    <select id="item-select">
+      <option value="">— выбрать —</option>
+    </select>
+  </div>
+
+  <!-- карточка -->
+  <div id="card">
+    <div class="card-image">
+      <img id="card-img" src="" alt=""/>
+    </div>
+    <div class="card-grid"></div>
+  </div>
+
+  <!-- кнопка оформить -->
+  <button id="order-btn">Оформить заказ</button>
+
+  <!-- форма заказа -->
+  <div id="order-form">
+    <div class="field">
+      <label>Никнейм в игре<br>
+        <input type="text" id="nick"/>
+      </label>
+    </div>
+    <p style="font-size:.9em; color:#faa;">
+      * необходимо заполнить хотя бы один из полей логинов
+    </p>
+    <div class="inline field">
+      <label>Telegram<br><input type="text" id="login-tg"/></label>
+      <label>Discord<br><input type="text" id="login-dc"/></label>
+    </div>
+    <div class="field inline">
+      <label><input type="radio" name="mode" value="buy" checked/> Я куплю</label>
+      <label><input type="radio" name="mode" value="sell"/> Я продам</label>
+    </div>
+    <h3>Товары:</h3>
+    <div id="selected-items" class="items-list"></div>
+    <div class="field">
+      <label>Добавить товар<br>
+        <select id="order-add">
+          <option value="">— выбрать —</option>
+        </select>
+      </label>
+    </div>
+    <div id="total">Итого: <span id="total-cost">0</span></div>
+    <button id="submit-order">Оформить заказ</button>
+  </div>
+</div>
+
+<!-- ================== JS ================== -->
+<script>
+window.addEventListener('DOMContentLoaded', async () => {
+  // лист «вывод» с названиями и ценами
+  const TSV_URL =
+    'https://docs.google.com/spreadsheets/d/1mnFNJusGYTGCxV2b2pcK4TPicaIGYN6-qRAlYBEq6g8/export?gid=1912312288&format=tsv';
+  const FALLBACK =
+    'https://wiki.vintagestory.at/images/thumb/0/04/Conditionalblock.png/200px-Conditionalblock.png';
+
+  // парсим TSV
+  const raw = await fetch(TSV_URL).then(r => r.text());
+  const rows = raw.trim().split('\n').map(r => r.split('\t'));
+  const items = rows.slice(2).map(r => ({
+    img:       r[0]?.trim(),
+    name:      r[1]?.trim(),
+    buy:       parseFloat(r[2].replace(',', '.')),
+    available: parseFloat(r[3].replace(',', '.')),
+    sell:      parseFloat(r[4].replace(',', '.')),
+    need:      parseFloat(r[5].replace(',', '.')),
+  })).filter(x=>x.name);
+
+  // ссылки на DOM
+  const selectEl   = document.getElementById('item-select');
+  const card       = document.getElementById('card');
+  const cardImg    = document.getElementById('card-img');
+  const gridEl     = card.querySelector('.card-grid');
+  const orderBtn   = document.getElementById('order-btn');
+  const orderForm  = document.getElementById('order-form');
+  const addSelect  = document.getElementById('order-add');
+  const selItemsEl = document.getElementById('selected-items');
+  const totalCost  = document.getElementById('total-cost');
+  const modeInputs = Array.from(document.getElementsByName('mode'));
+
+  let orderItems = [];
+
+  // заполняем оба селекта
+  items.forEach((it,i)=>{
+    const o1 = document.createElement('option');
+    o1.value = i; o1.textContent = it.name;
+    selectEl.append(o1);
+    const o2 = o1.cloneNode(true);
+    addSelect.append(o2);
+  });
+
+  // выбор товара => показать карточку + кнопку
+  selectEl.addEventListener('change', () => {
+    const idx = selectEl.value;
+    if (!idx) {
+      card.style.display = 'none';
+      orderBtn.style.display = 'none';
+      return;
+    }
+    const it = items[idx];
+    cardImg.src = it.img||FALLBACK;
+    cardImg.alt = it.name;
+    gridEl.innerHTML = [
+      {l:'Покупка',v:it.buy},{l:'Продажа',v:it.sell},
+      {l:'Доступно',v:it.available},{l:'Нужно',v:it.need}
+    ].map(x=>`
+      <div class="cell"><span>${x.l}</span><br><span>${x.v}</span></div>
+    `).join('');
+    card.style.display     = 'block';
+    orderBtn.style.display = 'inline-block';
+  });
+
+  // нажали «Оформить заказ»
+  orderBtn.addEventListener('click', () => {
+    const idx = selectEl.value;
+    if (idx && !orderItems.find(o=>o.idx==idx)) {
+      orderItems.push({idx:+idx, qty:1});
+    }
+    renderOrder();
+    orderForm.style.display = 'block';
+    card.style.display      = 'none';
+    orderBtn.style.display  = 'none';
+  });
+
+  // рендер списка заказа
+  function renderOrder(){
+    selItemsEl.innerHTML = '';
+    orderItems.forEach((o,i)=>{
+      const it = items[o.idx];
+      const div = document.createElement('div');
+      div.className = 'item';
+      div.innerHTML = `
+        <span>${it.name}</span>
+        <input type="number" min="1" value="${o.qty}"/>
+        <span class="remove">&times;</span>
+      `;
+      div.querySelector('.remove').onclick = ()=>{
+        orderItems.splice(i,1);
+        if (!orderItems.length) orderForm.style.display='none';
+        renderOrder();
+      };
+      div.querySelector('input').oninput = e=>{
+        o.qty = Math.max(1, +e.target.value);
+        renderOrder();
+      };
+      selItemsEl.append(div);
+    });
+    // пересчёт
+    const mode = modeInputs.find(r=>r.checked).value;
+    let sum = 0;
+    orderItems.forEach(o=>{
+      const it=items[o.idx];
+      const price = mode==='buy'? it.buy: it.sell;
+      sum += price*o.qty;
+    });
+    totalCost.textContent = sum.toFixed(2);
+  }
+
+  // добавление товара в заказ
+  addSelect.addEventListener('change',()=>{
+    const idx = addSelect.value;
+    if (idx && !orderItems.find(o=>o.idx==idx)) {
+      orderItems.push({idx:+idx, qty:1});
+      renderOrder();
+    }
+    addSelect.value = '';
+  });
+
+  // смена buy/sell
+  modeInputs.forEach(r=>r.onchange = renderOrder);
+
+  // отправка (заглушка)
+  document.getElementById('submit-order')
+    .addEventListener('click', ()=> alert('Заказ отправлен!'));
+});
+</script>
+

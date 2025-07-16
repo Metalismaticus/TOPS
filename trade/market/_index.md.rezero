@@ -1,0 +1,176 @@
+---
+title: "Магазин на диване"
+layout: single
+showHero: true
+heroStyle: "background"
+showAuthor: false # На всякий случай, если автор тоже где-то показывается
+showDate: false
+showWordCount: false
+showReadingTime: false
+layoutBackgroundHeaderSpace: false
+---
+<!-- ======== Cтили (положите в <head> или в начале market.md) ======== -->
+<style>
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    color: white;
+    font-family: sans-serif;
+  }
+  h1 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+  }
+
+  /* Селект */
+  .select-wrapper {
+    margin-bottom: 1.5em;
+  }
+  label {
+    display: block;
+    margin-bottom: 0.25em;
+  }
+  select {
+    width: 100%;
+    padding: 0.5em;
+    font-size: 1em;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 4px;
+    color: white;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%227%22%20viewBox%3D%220%200%2012%207%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M6%207L0%200h12L6%207z%22%20fill%3D%22white%22/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5em center;
+    background-size: 0.65em auto;
+  }
+  select option {
+    background: white;
+    color: black;
+  }
+
+  /* Карточка */
+  #card {
+    display: none;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 300px;
+    margin-top: 1em;
+  }
+  /* Белый фон изображения */
+  #card .card-image {
+    background: rgba(255,255,255,0.02);
+    padding: 1.5em;
+    text-align: center;
+  }
+  #card .card-image img {
+    max-width: 100%;
+    height: auto;
+    display: inline-block;
+  }
+  /* Сетка 2×2 */
+  #card .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  #card .card-grid .cell {
+    padding: 0.75em 1em;
+    border-top: 1px solid rgba(255,255,255,0.2);
+  }
+  #card .card-grid .cell:nth-child(odd) {
+    border-right: 1px solid rgba(255,255,255,0.2);
+  }
+  #card .card-grid .cell span:first-child {
+    font-weight: bold;
+  }
+</style>
+
+<!-- ======== Разметка ======== -->
+<div class="container">
+  <h1>Актуальные цены</h1>
+
+  <div class="select-wrapper">
+    <label for="item-select">Выберите товар</label>
+    <select id="item-select">
+      <option value="">— выбрать —</option>
+    </select>
+  </div>
+
+  <div id="card">
+    <div class="card-image">
+      <img id="card-img" src="" alt=""/>
+    </div>
+    <div class="card-grid">
+      <!-- JS вставит сюда 4 .cell -->
+    </div>
+  </div>
+</div>
+
+<!-- ======== Скрипт ======== -->
+<script>
+window.addEventListener('DOMContentLoaded', async () => {
+  const TSV_URL =
+    'https://docs.google.com/spreadsheets/d/1mnFNJusGYTGCxV2b2pcK4TPicaIGYN6-qRAlYBEq6g8/' +
+    'export?format=tsv&gid=1912312288';
+  const FALLBACK =
+    'https://wiki.vintagestory.at/images/thumb/0/04/Conditionalblock.png/200px-Conditionalblock.png';
+
+  // 1) Парсим TSV
+  const raw = await fetch(TSV_URL).then(r => r.text());
+  const rows = raw.trim().split('\n').map(r => r.split('\t'));
+  const items = rows.slice(2)
+    .map(r => ({
+      img:       r[0]?.trim(),
+      name:      r[1]?.trim(),
+      buy:       parseFloat(r[2].replace(',', '.')),
+      available: r[3]?.trim(),
+      sell:      parseFloat(r[4].replace(',', '.')),
+      need:      r[5]?.trim(),
+    }))
+    .filter(x => x.name && !isNaN(x.buy));
+
+  // 2) DOM
+  const selectEl = document.getElementById('item-select');
+  const card     = document.getElementById('card');
+  const imgEl    = document.getElementById('card-img');
+  const gridEl   = card.querySelector('.card-grid');
+
+  // 3) Заполняем <select>
+  items.forEach((it,i) => {
+    const o = document.createElement('option');
+    o.value = i; o.textContent = it.name;
+    selectEl.append(o);
+  });
+
+  // 4) При выборе — наполняем и показываем карточку
+  selectEl.addEventListener('change', () => {
+    const idx = selectEl.value;
+    if (!idx) {
+      card.style.display = 'none';
+      return;
+    }
+    const it = items[idx];
+    // картинка
+    imgEl.src = it.img || FALLBACK;
+    imgEl.alt = it.name;
+    // 4 клетки
+    const rows = [
+      { label: 'Покупка',  value: it.buy },
+      { label: 'Продажа',  value: it.sell },
+      { label: 'Доступно', value: it.available },
+      { label: 'Нужно',    value: it.need },
+    ];
+    gridEl.innerHTML = rows.map(r => `
+      <div class="cell">
+        <span>${r.label}</span><br>
+        <span>${r.value}</span>
+      </div>
+    `).join('');
+    card.style.display = 'block';
+  });
+});
+</script>
+
